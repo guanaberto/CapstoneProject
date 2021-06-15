@@ -69,11 +69,11 @@ const updateUser = function(req,res){
                     .status(400)
                     .json(err);
             }
-            firstName = req.body.firstName;
-            lastName = req.body.lastName;
-            password = req.body.password;
-            DOB = req.body.DOB;
-            type = req.body.type;
+            user.firstName = req.body.firstName;
+            user.lastName = req.body.lastName;
+            user.password = req.body.password;
+            user.DOB = req.body.DOB;
+            user.type = req.body.type;
 
             user.save((err, user) => {
                 if (err) {
@@ -85,6 +85,35 @@ const updateUser = function(req,res){
                 }
             });
         });
+};
+
+const deleteUser = function(req,res){
+    const { userid } = req.params;
+    if (userid) {
+        User.findByIdAndRemove(userid)
+            .exec((err, user) => {
+                if (err) {
+                    return res
+                        .status(404)
+                        .json(err);
+                }
+                //If user to delete is not found show a custom message
+                if(!user){
+                    return res.status(404)
+                              .json({
+                                  "message": "User to delete not found"
+                              });
+                }
+                res.status(204)
+                    .json(null);
+            }
+            );
+    } else {
+        res.status(404)
+            .json({
+                "message": "No User found"
+            });
+    }
 };
 
 //TODO add Event and shopping lists creator here
@@ -115,6 +144,73 @@ const createProduct = function(req,res){
             res.status(200).json(productdata);
         }
     }); 
+};
+
+const updateProduct = function(req,res){
+    if (!req.params.prodid) {
+        return res
+            .status(404)
+            .json({
+                "message": "Not found, prodid is required"
+            });
+    }
+    Product.findById(req.params.prodid)
+        .exec((err, prod) => {
+            if (!prod) {
+                return res
+                    .status(404)
+                    .json({
+                        "message": "prodid not found"
+                    });
+            } else if (err) {
+                return res
+                    .status(400)
+                    .json(err);
+            }
+            prod.name = req.body.name;
+            prod.picture = req.body.picture;
+            prod.basePrice = req.body.basePrice;
+            prod.category = req.body.category;
+
+            prod.save((err, prod) => {
+                if (err) {
+                    res.status(404)
+                        .json(err);
+                } else {
+                    res.status(200)
+                        .json(prod);
+                }
+            });
+        });
+};
+
+const deleteProduct = function(req,res){
+    const { prodid } = req.params;
+    if (prodid) {
+        Product.findByIdAndRemove(prodid)
+            .exec((err, prod) => {
+                if (err) {
+                    return res
+                        .status(404)
+                        .json(err);
+                }
+                //If product to delete is not found show a custom message
+                if(!prod){
+                    return res.status(404)
+                              .json({
+                                  "message": "Product to delete not found"
+                              });
+                }
+                res.status(204)
+                    .json(null);
+            }
+            );
+    } else {
+        res.status(404)
+            .json({
+                "message": "No Product found"
+            });
+    }
 };
 
 const getSingleProduct = function(req,res){
@@ -173,15 +269,84 @@ const createProductCat = function(req,res){
     }); 
 };
 
+const updateProductCat = function(req,res){
+    if (!req.params.prodcatid) {
+        return res
+            .status(404)
+            .json({
+                "message": "Not found, prodcatid is required"
+            });
+    }
+    ProductCat.findById(req.params.prodcatid)
+        .exec((err, prodcat) => {
+            if (!prodcat) {
+                return res
+                    .status(404)
+                    .json({
+                        "message": "prodcatid not found"
+                    });
+            } else if (err) {
+                return res
+                    .status(400)
+                    .json(err);
+            }
+            prodcat.name = req.body.name;
+            
+            prodcat.save((err, prodcat) => {
+                if (err) {
+                    res.status(404)
+                        .json(err);
+                } else {
+                    res.status(200)
+                        .json(prodcat);
+                }
+            });
+        });
+};
+
+const deleteProductCat = function(req,res){
+    const { prodcatid } = req.params;
+    if (prodcatid) {
+        ProductCat.findByIdAndRemove(prodcatid)
+            .exec((err, prodcat) => {
+                if (err) {
+                    return res
+                        .status(404)
+                        .json(err);
+                }
+                //If product cat to delete is not found show a custom message
+                if(!prodcat){
+                    return res.status(404)
+                              .json({
+                                  "message": "Product Cat to delete not found"
+                              });
+                }
+                res.status(204)
+                    .json(null);
+            }
+            );
+    } else {
+        res.status(404)
+            .json({
+                "message": "No Product Cat found"
+            });
+    }
+};
+
 module.exports = {
     getUser,
     getSingleUser,
     createUser,
     updateUser,
+    deleteUser,
+    getProduct,
+    getSingleProduct,
+    createProduct,
+    updateProduct,
+    deleteProduct,
     getProductCat,
     getSingleProductCat,
     createProductCat,
-    getProduct,
-    getSingleProduct,
-    createProduct
+    updateProductCat,
+    deleteProductCat
 }
