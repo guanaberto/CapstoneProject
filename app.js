@@ -4,8 +4,14 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+//Adds the reference to DB
+require('./app_server/models/db');
+
+
+//var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');//TODO: CHECK ME
+//Route to the baking bella api
+var apiRouter = require('./app_api/routes/bakingbella');
 
 var app = express();
 
@@ -19,8 +25,22 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+/* to add in the future and relate with Angular
+app.use('/api',(req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
+  next();
+});
+*/
+
+//Commented to remove PUG: app.use('/', indexRouter);
+/*to add in the future and relate with Angular 
+app.use(express.static(path.join(__dirname,'APP_PUBLIC','build')));
+*/
 app.use('/users', usersRouter);
+app.use('/api', apiRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
