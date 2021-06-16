@@ -22,7 +22,7 @@ const shoppinglistSchema = new mongoose.Schema({
         min: 1,
         max: 999
     },
-    totalPrice : {
+    totalprice : {
         type: Number,
         required: true
     },

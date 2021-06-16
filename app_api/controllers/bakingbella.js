@@ -1,3 +1,4 @@
+const { response } = require('express');
 const mongoose = require('mongoose');
 
 const User = mongoose.model('User');
@@ -117,7 +118,244 @@ const deleteUser = function(req,res){
 };
 
 //TODO add Event and shopping lists creator here
+const getSingleEvent = function(req,res){
+    const { userid, eventid } = req.params;
+    if (!userid || !eventid) {
+        return res
+            .status(404)
+            .json({ 'message': 'Not found, userid and eventid are both required' });
+    }
 
+    User.findById(userid)
+        .select('events')
+        .exec((err, user) => {
+            if (!user) {
+                return res.status(404)
+                        .json({ 'message': 'User not found' });
+            } else if (err) {
+                return res.status(400)
+                        .json(err);
+            }
+
+            if (user.events && user.events.length > 0) {
+                if (!user.events.id(eventid)) {
+                    return res.status(404)
+                            .json({ 'message': 'Event not found' });
+                } else {
+                    return res.status(200)
+                            .json(user.events.id(eventid));                    
+                }
+            } else {
+                res.status(404)
+                   .json({ 'message': 'The User has no Events' });
+            }
+        });
+};
+
+const createEvent = (req, res) => {
+    const userId = req.params.userid;
+    if (userId) {
+        User.findById(userId)
+            .select('events')
+            .exec((err, user) => {
+                if (err) {
+                    res
+                        .status(400)
+                        .json(err);
+                } else {                    
+                    const { name, datetime, type } = req.body;
+                    user.events.push({
+                        name,
+                        datetime,
+                        type
+                    });
+                    user.save((err, user) => {
+                        if (err) {
+                            res
+                                .status(400)
+                                .json(err);
+                        } else {
+                            res
+                                .status(201)
+                                .json(user.events);
+                        }
+                    });
+                }
+            });
+    } else {
+        res
+            .status(404)
+            .json({ "message": "User not found" });
+    }
+};
+
+const deleteEvent = (req, res) => {
+    const { userid, eventid } = req.params;
+    if (!userid || !eventid) {
+        return res
+            .status(404)
+            .json({ 'message': 'Not found, userid and eventid are both required' });
+    }
+
+    User.findById(userid)
+        .select('events')
+        .exec((err, user) => {
+            if (!user) {
+                return res.status(404)
+                        .json({ 'message': 'User not found' });
+            } else if (err) {
+                return res.status(400)
+                        .json(err);
+            }
+
+            if (user.events && user.events.length > 0) {
+                if (!user.events.id(eventid)) {
+                    return res.status(404)
+                            .json({ 'message': 'Event not found' });
+                } else {
+                    user.events.id(eventid).remove();
+                    user.save(err => {
+                        if (err) {
+                            return res
+                                .status(404)
+                                .json(err);
+                        } else {
+                            return res.status(204)
+                                .json({'message' : 'Event deleted successfully'});
+                        }
+                    });
+                }
+            } else {
+                res
+                    .status(404)
+                    .json({ 'message': 'No Event to delete' });
+            }
+        });
+};
+
+const getSingleShoppingList = function(req,res){
+    const { userid, shoplistid } = req.params;
+    if (!userid || !shoplistid) {
+        return res
+            .status(404)
+            .json({ 'message': 'Not found, userid and shoplistid are both required' });
+    }
+
+    User.findById(userid)
+        .select('shoppinglists')
+        .exec((err, user) => {
+            if (!user) {
+                return res.status(404)
+                        .json({ 'message': 'User not found' });
+            } else if (err) {
+                return res.status(400)
+                        .json(err);
+            }
+
+            if (user.shoppinglists && user.shoppinglists.length > 0) {
+                if (!user.shoppinglists.id(shoplistid)) {
+                    return res.status(404)
+                            .json({ 'message': 'Shopping List not found' });
+                } else {
+                    return res.status(200)
+                            .json(user.shoppinglists.id(shoplistid));                    
+                }
+            } else {
+                res.status(404)
+                   .json({ 'message': 'The User has no Shopping Lists' });
+            }
+        });
+};
+
+const createShoppingList = (req, res) => {
+    const userId = req.params.userid;
+    if (userId) {
+        User.findById(userId)
+            .select('shoppinglists')
+            .exec((err, user) => {
+                if (err) {
+                    res
+                        .status(400)
+                        .json(err);
+                } else {                    
+                    const { quantity, totalprice, product_id } = req.body;
+                    //check if the product exists
+                    Product.exists({_id: product_id}, function(err, doc){
+                        if(err){
+                            res.status(400)
+                                .json({ "message": "Related Product not found" });
+                        }else{
+                            //HERE THE PUSH
+                            user.shoppinglists.push({
+                                quantity,
+                                totalprice,
+                                product_id
+                            });
+                            user.save((err, user) => {
+                                if (err) {
+                                    res
+                                        .status(400)
+                                        .json(err);
+                                } else {
+                                    res
+                                        .status(201)
+                                        .json(user.shoppinglists);
+                                }
+                            });
+                        }
+                    }); 
+                }
+            });
+    } else {
+        res
+            .status(404)
+            .json({ "message": "User not found" });
+    }
+};
+
+const deleteShoppingList = (req, res) => {
+    const { userid, shoplistid } = req.params;
+    if (!userid || !shoplistid) {
+        return res
+            .status(404)
+            .json({ 'message': 'Not found, userid and shoplistid are both required' });
+    }
+
+    User.findById(userid)
+        .select('shoppinglists')
+        .exec((err, user) => {
+            if (!user) {
+                return res.status(404)
+                        .json({ 'message': 'User not found' });
+            } else if (err) {
+                return res.status(400)
+                        .json(err);
+            }
+
+            if (user.shoppinglists && user.shoppinglists.length > 0) {
+                if (!user.shoppinglists.id(shoplistid)) {
+                    return res.status(404)
+                            .json({ 'message': 'Shopping List not found' });
+                } else {
+                    user.shoppinglists.id(shoplistid).remove();
+                    user.save(err => {
+                        if (err) {
+                            return res
+                                .status(404)
+                                .json(err);
+                        } else {
+                            return res.status(204)
+                                .json({'message' : 'Shopping List deleted successfully'});
+                        }
+                    });
+                }
+            } else {
+                res
+                    .status(404)
+                    .json({ 'message': 'No Shopping List to delete' });
+            }
+        });
+};
 
 const getProduct = function(req,res){
     Product.find().exec(function(err, pdata) {
@@ -219,7 +457,7 @@ const getSingleProduct = function(req,res){
         .exec((err, prod) => {
             if(!prod){
                 return res.status(404).json({
-                    "message" : "Product not found"+prodid
+                    "message" : "Product not found "+prodid
                 });
             }else if(err){
                 return res.status(404).json(err);
@@ -334,16 +572,27 @@ const deleteProductCat = function(req,res){
 };
 
 module.exports = {
+    //User
     getUser,
     getSingleUser,
     createUser,
     updateUser,
     deleteUser,
+    //Event
+    getSingleEvent,
+    createEvent,
+    deleteEvent,
+    //ShoppingList
+    getSingleShoppingList,
+    createShoppingList,
+    deleteShoppingList,
+    //Product
     getProduct,
     getSingleProduct,
     createProduct,
     updateProduct,
     deleteProduct,
+    //Product Category
     getProductCat,
     getSingleProductCat,
     createProductCat,
