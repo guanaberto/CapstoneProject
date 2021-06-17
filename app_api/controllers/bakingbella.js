@@ -207,7 +207,7 @@ const deleteEvent = (req, res) => {
                 return res.status(400)
                         .json(err);
             }
-
+                
             if (user.events && user.events.length > 0) {
                 if (!user.events.id(eventid)) {
                     return res.status(404)
@@ -229,6 +229,53 @@ const deleteEvent = (req, res) => {
                 res
                     .status(404)
                     .json({ 'message': 'No Event to delete' });
+            }
+        });
+};
+
+const updateEvent = (req, res) => {
+    const { userid, eventid } = req.params;
+    if (!userid || !eventid) {
+        return res
+            .status(404)
+            .json({ 'message': 'Not found, userid and eventid are both required' });
+    }
+
+    User.findById(userid)
+        .select('events')
+        .exec((err, user) => {
+            if (!user) {
+                return res.status(404)
+                        .json({ 'message': 'User not found' });
+            } else if (err) {
+                return res.status(400)
+                        .json(err);
+            }
+                
+            if (user.events && user.events.length > 0) {
+                if (!user.events.id(eventid)) {
+                    return res.status(404)
+                            .json({ 'message': 'Event not found' });
+                } else {
+                    const thisevent = user.events.id(eventid);
+                    thisevent.name = req.body.name;
+                    thisevent.datetime = req.body.datetime;
+                    thisevent.type = req.body.type;
+                    user.save(err => {
+                        if (err) {
+                            return res
+                                .status(404)
+                                .json(err);
+                        } else {
+                            return res.status(204)
+                                .json({'message' : 'Event updated successfully'});
+                        }
+                    });
+                }
+            } else {
+                res
+                    .status(404)
+                    .json({ 'message': 'No Event to update' });
             }
         });
 };
@@ -356,6 +403,64 @@ const deleteShoppingList = (req, res) => {
             }
         });
 };
+
+const updateShoppingList = (req, res) => {
+    const { userid, shoplistid } = req.params;
+    if (!userid || !shoplistid) {
+        return res
+            .status(404)
+            .json({ 'message': 'Not found, userid and shoplistid are both required' });
+    }
+
+    User.findById(userid)
+        .select('shoppinglists')
+        .exec((err, user) => {
+            if (!user) {
+                return res.status(404)
+                        .json({ 'message': 'User not found' });
+            } else if (err) {
+                return res.status(400)
+                        .json(err);
+            }
+
+            if (user.shoppinglists && user.shoppinglists.length > 0) {
+                if (!user.shoppinglists.id(shoplistid)) {
+                    return res.status(404)
+                            .json({ 'message': 'Shopping List not found' });
+                } else {
+
+                    Product.exists({_id: req.body.product_id}, function(err, doc){
+                        if(err){
+                            res.status(400)
+                                .json({ "message": "Related Product not found" });
+                        }else{
+                            const thisshopl = user.shoppinglists.id(shoplistid);
+                            thisshopl.quantity = req.body.quantity;
+                            thisshopl.totalprice = req.body.totalprice;
+                            thisshopl.product_id = req.body.product_id;
+                            
+                            user.save(err => {
+                                if (err) {
+                                    return res
+                                        .status(404)
+                                        .json(err);
+                                } else {
+                                    return res.status(204)
+                                        .json({'message' : 'Shopping List updated successfully'});
+                                }
+                            });
+                        }
+                    });
+                }
+            } else {
+                res
+                    .status(404)
+                    .json({ 'message': 'No Shopping List to delete' });
+            }
+        });
+};
+
+
 
 const getProduct = function(req,res){
     Product.find().exec(function(err, pdata) {
@@ -582,10 +687,12 @@ module.exports = {
     getSingleEvent,
     createEvent,
     deleteEvent,
+    updateEvent,
     //ShoppingList
     getSingleShoppingList,
     createShoppingList,
     deleteShoppingList,
+    updateShoppingList,
     //Product
     getProduct,
     getSingleProduct,

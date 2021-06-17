@@ -13,10 +13,10 @@ router.route('/productcats/').get(mainCtrl.getProductCat).post(mainCtrl.createPr
 router.route('/productcats/:prodcatid').get(mainCtrl.getSingleProductCat).put(mainCtrl.updateProductCat).delete(mainCtrl.deleteProductCat);
 
 router.route('/users/:userid/events').post(mainCtrl.createEvent);
-router.route('/users/:userid/events/:eventid').get(mainCtrl.getSingleEvent).delete(mainCtrl.deleteEvent);
+router.route('/users/:userid/events/:eventid').get(mainCtrl.getSingleEvent).delete(mainCtrl.deleteEvent).put(mainCtrl.updateEvent);
 
 router.route('/users/:userid/shoppinglists').post(mainCtrl.createShoppingList);
-router.route('/users/:userid/shoppinglists/:shoplistid').get(mainCtrl.getSingleShoppingList).delete(mainCtrl.deleteShoppingList);
+router.route('/users/:userid/shoppinglists/:shoplistid').get(mainCtrl.getSingleShoppingList).delete(mainCtrl.deleteShoppingList).put(mainCtrl.updateShoppingList);
 
 
 module.exports = router;
