@@ -1,0 +1,48 @@
+<!--NAVIGATION BAR
+    <nav class="navbar fixed-top navbar-expand-md navbar-light">
+    <div class="container">
+        
+            <a class="navbar-brand" routerLink="">Loc8r</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMain">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbarMain">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="about" routerLinkActive="active">About</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>-->
+
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <button mat-icon-button>
+        <mat-icon >menu</mat-icon><!--(click)="sidenav.toggle()"-->
+      </button>
+      <h1>Baking Bella</h1>
+      <span class="menu-spacer"></span>
+      <div>
+        <a mat-button [routerLink]="'/accounts'"> Products </a>
+        <a mat-button [routerLink]="'/create-account'"> Your Account </a>
+        <a mat-button [routerLink]="'/example'"> Example </a>
+        <a mat-button [routerLink]="'/example'"> Example </a>  
+      </div>
+    </mat-toolbar-row>
+  
+    <!--<mat-toolbar-row>
+        <span style="font-size: 12px;">Bakingbella text</span>
+      </mat-toolbar-row>-->
+</mat-toolbar>
+
+<div class="container content">
+    <router-outlet></router-outlet>
+    <footer>
+        <div class="row">
+            <div class="col-12">
+                <small>© Daniel Gurminder Dilpreet and Onkar 2021</small>
+            </div>
+        </div>
+    </footer>
+</div>
