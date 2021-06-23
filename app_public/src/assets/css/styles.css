@@ -1,4 +1,53 @@
 .mat-icon-button{
-    height: 60px !important;
-    width: 60px !important;
+    height: 80px !important;
+    width: 80px !important;
+}
+.mat-toolbar-multiple-rows{
+    min-height: 90px !important;
+}
+.mat-toolbar-row{
+    height: 90px !important;
+}
+.menu-spacer {
+    flex: 1 1 auto;
+}
+
+.carousel-cell > img{
+    object-fit: cover !important;
+}
+
+.carousel-cell > h2 {
+    position: absolute;
+    right: 15%;
+    bottom: 45%;
+    left: 15%;
+    z-index: 10;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #fff;
+    opacity: 0.6;
+    font-size: 35px !important;
+    text-align: center;
+    text-shadow: 0 1px 2px rgb(0 0 0 / 60%);
+}
+
+.carousel-cell > p{
+    position: absolute;
+    right: 15%;
+    bottom: 39%;
+    left: 15%;
+    z-index: 10;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #fff;
+    font-size: 70px !important;
+    text-align: center;
+    text-shadow: 0 1px 2px rgb(0 0 0 / 60%);
+}
+
+.about{
+    background-color:#303030;
+}
+.about > img{
+    height: 200px;
 }

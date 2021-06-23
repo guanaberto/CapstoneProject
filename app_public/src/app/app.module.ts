@@ -11,6 +11,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
 
 
 
@@ -28,6 +29,7 @@ import {MatIconModule} from '@angular/material/icon';
     MatListModule,
     MatButtonModule,
     MatIconModule,
+    IvyCarouselModule,
     RouterModule.forRoot([
       {
         path: '',
