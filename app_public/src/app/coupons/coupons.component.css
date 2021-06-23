@@ -1,0 +1,34 @@
+.coupon {
+  border: 5px dotted rgb(154, 154, 154); /* Dotted border */
+  width: 80%;
+  border-radius: 15px; /* Rounded border */
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  max-width: 600px;
+  padding: 5px;
+}
+
+.container {
+  padding: 2px 16px;
+  background-color: #f1f1f1;
+  text-align: center;
+}
+
+.promo {
+  background: #ccc;
+  padding: 3px;
+}
+
+.expire {
+  color: red;
+}
+
+.logo{
+  background-color: #7b1fa2;
+}
+
+.logo > img {
+  width: 20%;
+}

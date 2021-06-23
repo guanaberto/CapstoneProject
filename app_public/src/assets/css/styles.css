@@ -1,4 +1,137 @@
+body{
+    background-color:#7c7197 !important;
+}
 .mat-icon-button{
-    height: 60px !important;
-    width: 60px !important;
+    height: 80px !important;
+    width: 80px !important;
+}
+.mat-toolbar-multiple-rows{
+    min-height: 90px !important;
+}
+.mat-toolbar-row{
+    height: 90px !important;
+}
+.menu-spacer {
+    flex: 1 1 auto;
+}
+
+.mainlogo{
+    margin-left: 20%;
+}
+
+.carousel-cell > img{
+    object-fit: cover !important;
+}
+
+.carousel-cell > h2 {
+    position: absolute;
+    right: 15%;
+    bottom: 45%;
+    left: 15%;
+    z-index: 10;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #fff;
+    opacity: 0.6;
+    font-size: 35px !important;
+    text-align: center;
+    text-shadow: 0 1px 2px rgb(0 0 0 / 60%);
+}
+
+.carousel-cell > p{
+    position: absolute;
+    right: 15%;
+    bottom: 39%;
+    left: 15%;
+    z-index: 10;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #fff;
+    font-size: 70px !important;
+    text-align: center;
+    text-shadow: 0 1px 2px rgb(0 0 0 / 60%);
+}
+
+.about{
+    background-color:#7c7197 !important;
+    width: 100%;
+    text-align: center;
+}
+.about img{
+    height: 300px; 
+    display: inline-block;   
+    padding-top: 7%;
+}
+.about div{
+    color: #FFF;
+    display: inline-block;
+    width: 250px;
+    text-align: left;
+    padding: 7%;
+}
+
+.title{
+    color: #fff;
+    opacity: 0.6;
+    font-size: 55px !important;    
+    text-shadow: 0 1px 4px rgb(0 0 0 / 60%);
+}
+
+.waiting{
+    background-image: linear-gradient(0deg, rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(../../assets/pics/waiting.jpg);
+    background-position: 50% 91.42%;
+    background-size: cover;
+}
+
+.waiting .waitingtitle{
+    height: 500px;
+}
+
+.waitingtitle h2{
+    position: relative;
+    /*right: 15%;*/
+    bottom: -40%;
+    /*left: 15%;*/
+    z-index: 10;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #fff;
+    opacity: 0.6;
+    font-size: 7vw !important;
+    text-align: center;
+    text-shadow: 0 1px 2px rgb(0 0 0 / 60%);
+}
+
+.products{
+    text-align: center;
+    background-color: #292e33;
+    color: #fff;    
+}
+
+.productgroup{
+    padding-left: 20%;
+    padding-right: 20%;
+    display: flex;
+}
+
+.prod1, .prod2, .prod3{
+    flex: 33%;
+    margin-top: 70px;
+    margin-bottom: 70px;
+}
+
+/* Responsive layout - makes a one column-layout instead of a two-column layout */
+@media (max-width: 800px) {
+    .prod1, .prod2, .prod3 {
+      flex: 100%;
+    }
+}
+
+footer{
+    color: #ffffff;
+    background-color: #292e33;
+    text-align: center;
+    padding: 40px;
+    margin-left: auto;
+    margin-right: auto;
 }

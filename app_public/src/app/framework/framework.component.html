@@ -1,33 +1,15 @@
-<!--NAVIGATION BAR
-    <nav class="navbar fixed-top navbar-expand-md navbar-light">
-    <div class="container">
-        
-            <a class="navbar-brand" routerLink="">Loc8r</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMain">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-collapse collapse" id="navbarMain">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="about" routerLinkActive="active">About</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>-->
-
 <mat-toolbar color="primary">
     <mat-toolbar-row>
-      <button mat-icon-button>
+      <button [routerLink]="'/'" mat-icon-button>
         <!--<mat-icon >menu</mat-icon>(click)="sidenav.toggle()"-->
-        <img src="../../assets/pics/logo.png" alt="" height="100%">
+        <img class="mainlogo" src="../../assets/pics/logo.png" alt="" height="100%">
       </button>
       <span class="menu-spacer"></span>
       <div>
-        <a mat-button [routerLink]="'/accounts'"> Products </a>
-        <a mat-button [routerLink]="'/create-account'"> Your Account </a>
-        <a mat-button [routerLink]="'/example'"> Example </a>
-        <a mat-button [routerLink]="'/example'"> Example </a>  
+        <a mat-button [routerLink]="'/coupons'">Coupons</a>
+        <a mat-button [routerLink]="'/products'">Products</a>
+        <a mat-button [routerLink]="'/account'">Your Account</a>
+        <a mat-button [routerLink]="'/about'">About Us</a>
       </div>
     </mat-toolbar-row>
   
@@ -38,11 +20,12 @@
 
 <div class="container content">
     <router-outlet></router-outlet>
-    <footer>
-        <div class="row">
-            <div class="col-12">
-                <small>© Daniel Gurminder Dilpreet and Onkar 2021</small>
-            </div>
+    
+    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-daa9">
+        <div class="u-clearfix u-sheet u-sheet-1">
+            <p class="u-small-text u-text u-text-variant u-text-1">
+                © 2021 | Daniel | Gurminder | Dilpreet | Onkar
+            </p>
         </div>
     </footer>
 </div>
