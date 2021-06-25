@@ -7,9 +7,10 @@
       <span class="menu-spacer"></span>
       <div>
         <a mat-button [routerLink]="'/coupons'">Coupons</a>
-        <a mat-button [routerLink]="'/products'">Products</a>
-        <a mat-button [routerLink]="'/account'">Your Account</a>
-        <a mat-button [routerLink]="'/about'">About Us</a>
+        <a mat-button [disabled]="true" [routerLink]="'/account'">Your Account</a>
+        <a mat-button (click)="scroll('about')">About Us</a>
+        <a mat-button (click)="scroll('products')">Our Products</a>
+        <a mat-button (click)="scroll('contactus')">Contact Us</a>
       </div>
     </mat-toolbar-row>
   
