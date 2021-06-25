@@ -127,6 +127,34 @@ body{
     }
 }
 
+.contactus{
+    background-color: #FFF;
+    display: flex;
+    margin: 0 auto;
+}
+
+.contactus div{
+    flex: 50%;
+    margin: auto;
+    margin-left: 20%;
+}
+
+.contactus div h2{
+    color: gray !important;
+    font-size: 4vw !important;
+    margin-bottom: 50px !important;
+}
+
+.contactus div p{
+    font-size: 1.5vw !important;
+    line-height: 1.8vw;
+}
+
+.contactus img{
+    flex: 50%;    
+    width: 50%;
+}
+
 footer{
     color: #ffffff;
     background-color: #292e33;
