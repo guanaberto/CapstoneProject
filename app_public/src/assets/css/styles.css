@@ -57,16 +57,20 @@ body{
     width: 100%;
     text-align: center;
 }
+.about h2 {
+    margin-bottom: 25px !important;
+}
 .about img{
-    height: 300px; 
+    height: 325px; 
     display: inline-block;   
     padding-top: 7%;
 }
 .about div{
     color: #FFF;
     display: inline-block;
-    width: 250px;
-    text-align: left;
+    width: 300px;
+    text-align: justify;
+    font-size: 18px !important;    
     padding: 7%;
 }
 
@@ -116,15 +120,20 @@ body{
 
 .prod1, .prod2, .prod3{
     flex: 33%;
-    margin-top: 70px;
-    margin-bottom: 70px;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 /* Responsive layout - makes a one column-layout instead of a two-column layout */
 @media (max-width: 800px) {
     .prod1, .prod2, .prod3 {
-      flex: 100%;
+        flex: 100%;
     }
+    .mat-toolbar-row a{
+        font-size: 11px !important;
+        padding: 2px !important;
+    }
+
 }
 
 .contactus{
@@ -136,13 +145,13 @@ body{
 .contactus div{
     flex: 50%;
     margin: auto;
-    margin-left: 20%;
+    margin-left: 15%;
 }
 
 .contactus div h2{
     color: gray !important;
     font-size: 4vw !important;
-    margin-bottom: 50px !important;
+    margin-bottom: 4vw !important;
 }
 
 .contactus div p{
@@ -162,4 +171,11 @@ footer{
     padding: 40px;
     margin-left: auto;
     margin-right: auto;
+}
+
+#scrollupbutton{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 10000;
 }

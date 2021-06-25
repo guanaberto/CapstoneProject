@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar id="primarytoolbar" color="primary">
     <mat-toolbar-row>
       <button [routerLink]="'/'" mat-icon-button>
         <!--<mat-icon >menu</mat-icon>(click)="sidenav.toggle()"-->
@@ -13,20 +13,18 @@
         <a mat-button (click)="scroll('contactus')">Contact Us</a>
       </div>
     </mat-toolbar-row>
-  
-    <!--<mat-toolbar-row>
-        <span style="font-size: 12px;">Bakingbella text</span>
-      </mat-toolbar-row>-->
-</mat-toolbar>
-
-<div class="container content">
-    <router-outlet></router-outlet>
     
-    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-daa9">
-        <div class="u-clearfix u-sheet u-sheet-1">
-            <p class="u-small-text u-text u-text-variant u-text-1">
-                © 2021 | Daniel | Gurminder | Dilpreet | Onkar
-            </p>
-        </div>
-    </footer>
-</div>
+</mat-toolbar>
+<router-outlet></router-outlet>
+<!--Scroll up button-->
+<button mat-fab color="primary" id="scrollupbutton">
+  <mat-icon (click)="scroll('primarytoolbar')">keyboard_arrow_up</mat-icon>
+</button>
+<!-- -->
+<footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-daa9">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <p class="u-small-text u-text u-text-variant u-text-1">
+            © 2021 | Daniel | Gurminder | Dilpreet | Onkar
+        </p>
+    </div>
+</footer>

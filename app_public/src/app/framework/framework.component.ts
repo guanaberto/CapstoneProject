@@ -1,5 +1,6 @@
 import { ViewportScroller } from '@angular/common';
 import { Component, ElementRef, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-framework',
@@ -8,14 +9,17 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 })
 export class FrameworkComponent implements OnInit {
 
-  public constructor() { }
+  public constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
   public scroll(str : string):void {
-    var element = document.getElementById(str);
-    element!.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
-  }
-
+    if(this.router.url==='/'){
+      var element = document.getElementById(str);
+      element!.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+    }else{
+      this.router.navigate(['/']);  
+    }
+  }  
 }
