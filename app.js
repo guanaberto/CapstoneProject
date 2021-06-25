@@ -25,19 +25,19 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-/* to add in the future and relate with Angular
+// to add in the future and relate with Angular
 app.use('/api',(req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
   next();
 });
-*/
+
 
 //Commented to remove PUG: app.use('/', indexRouter);
-/*to add in the future and relate with Angular 
-app.use(express.static(path.join(__dirname,'APP_PUBLIC','build')));
-*/
+//to add in the future and relate with Angular 
+app.use(express.static(path.join(__dirname,'app_public','build')));
+
 app.use('/users', usersRouter);
 app.use('/api', apiRouter);
 
