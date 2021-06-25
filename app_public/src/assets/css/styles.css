@@ -41,7 +41,7 @@ body{
 .carousel-cell > p{
     position: absolute;
     right: 15%;
-    bottom: 39%;
+    bottom: 37%;
     left: 15%;
     z-index: 10;
     padding-top: 20px;
@@ -110,6 +110,11 @@ body{
     text-align: center;
     background-color: #292e33;
     color: #fff;    
+    padding-top: 50px;
+}
+
+.products .title{
+    opacity: 1;
 }
 
 .productgroup{
