@@ -9,15 +9,15 @@ require('./app_server/models/db');
 
 
 //var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');//TODO: CHECK ME
+/*var usersRouter = require('./routes/users');*/
 //Route to the baking bella api
 var apiRouter = require('./app_api/routes/bakingbella');
 
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+/*app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');*/
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -38,7 +38,7 @@ app.use('/api',(req, res, next) => {
 //to add in the future and relate with Angular 
 app.use(express.static(path.join(__dirname,'app_public','build')));
 
-app.use('/users', usersRouter);
+/*app.use('/users', usersRouter);*/
 app.use('/api', apiRouter);
 
 
