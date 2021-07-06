@@ -11,8 +11,22 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {MatFormFieldModule } from '@angular/material/form-field';
+import {MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { CouponsComponent } from './coupons/coupons.component';
+import { SignupComponent } from './signup/signup.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { ShoppinglistComponent } from './shoppinglist/shoppinglist.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+
+
+
+
 
 const routerOptions : ExtraOptions = {
   useHash : false,
@@ -25,6 +39,9 @@ const routerOptions : ExtraOptions = {
     HomePageComponent,
     FrameworkComponent,
     CouponsComponent,
+    SignupComponent,
+    LoginComponent,
+    ShoppinglistComponent,
     
   ],
   imports: [
@@ -34,7 +51,15 @@ const routerOptions : ExtraOptions = {
     MatListModule,
     MatButtonModule,
     MatIconModule,
+    MatFormFieldModule, 
+    MatCardModule, 
+    MatInputModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
     IvyCarouselModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       {
         path: '',
@@ -43,6 +68,18 @@ const routerOptions : ExtraOptions = {
       {
         path: 'coupons',
         component : CouponsComponent
+      },
+      {
+        path: 'login',
+        component : LoginComponent
+      },
+      {
+        path: 'signup',
+        component : SignupComponent
+      },
+      {
+        path: 'shoppinglist',
+        component : ShoppinglistComponent
       }
     ], routerOptions),
     BrowserAnimationsModule

@@ -1,0 +1,31 @@
+<mat-card>
+    <mat-card-content>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <h2>Sign Up</h2>
+            <mat-form-field class="full-width-input">
+                <input matInput placeholder="First Name" formControlName="firstname" required>                
+            </mat-form-field>
+            <mat-form-field class="full-width-input">
+                <input matInput placeholder="Last Name" formControlName="lastname">                
+            </mat-form-field>             
+            <mat-form-field class="full-width-input">
+                <input matInput placeholder="Date Of Birth" formControlName="dob" [min]="minDate" [max]="maxDate" [matDatepicker]="picker" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class="full-width-input">
+                <input matInput placeholder="Email (Username)" formControlName="username" required>                
+            </mat-form-field>
+            <mat-form-field class="full-width-input">
+                <input matInput type="password" placeholder="Password" formControlName="password" required>                
+            </mat-form-field>
+            <mat-form-field class="full-width-input">
+                <input matInput type="password" placeholder="Confirm your Password" formControlName="passwordconfirm" required>                
+            </mat-form-field>
+            <mat-error *ngIf="passwordinvalid">
+                The password should be the same as the confirmation
+            </mat-error>
+            <button mat-raised-button color="primary">Create User</button>            
+        </form>
+    </mat-card-content>
+</mat-card>

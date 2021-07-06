@@ -16,12 +16,14 @@ const getUser = function(req,res){
 };
 
 const getSingleUser = function(req,res){
-    const userid = req.params.userid;
-    User.findById(userid)
+    const username = req.params.username;
+    const passwd = req.params.passwd;
+    //User.findById(userid)
+    User.find({username : username, password : passwd})
         .exec((err, user) => {
             if(!user){
                 return res.status(404).json({
-                    "message" : "User not found"+userid
+                    "message" : "User not found"+username
                 });
             }else if(err){
                 return res.status(404).json(err);
@@ -37,7 +39,8 @@ const createUser = function(req,res){
         lastName : req.body.lastName,
         password : req.body.password,
         DOB : req.body.DOB,
-        type : req.body.type          
+        type : req.body.type,
+        username : req.body.username      
     },(err, userdata) => {
         if(err){
             res.status(404).json(err);
@@ -75,6 +78,7 @@ const updateUser = function(req,res){
             user.password = req.body.password;
             user.DOB = req.body.DOB;
             user.type = req.body.type;
+            user.username = req.body.username;
 
             user.save((err, user) => {
                 if (err) {
