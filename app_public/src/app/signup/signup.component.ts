@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { BakingBellaDataService } from '../baking-bella-data.service';
 import { Event, ShoppingList, User } from '../bakingbella';
@@ -15,6 +16,7 @@ export class SignupComponent implements OnInit {
 
   form: FormGroup;
   public passwordinvalid = false;  
+  
   newevent : Event = {
     _id: '',
     name: '',
@@ -40,7 +42,7 @@ export class SignupComponent implements OnInit {
   }
 
   
-  constructor(private fb: FormBuilder,private router: Router,private bakingBellaService : BakingBellaDataService) {
+  constructor(private _sb: MatSnackBar, private fb: FormBuilder,private router: Router,private bakingBellaService : BakingBellaDataService) {
     this.form = this.fb.group({
       firstname : ['', Validators.required],
       lastname : [''],
@@ -80,12 +82,25 @@ export class SignupComponent implements OnInit {
         this.newus.password = password;
         this.newus.type = "user";        
         
-        //Call the service
-        await this.bakingBellaService.createUser(this.newus);
-        
-        
-        console.log("OK, user created!!!");
+        //Call the service TODO: verify current users to show notification error
+        await this.bakingBellaService.createUser(this.newus).catch(error=>this.handleError(error, this._sb));
+        this._sb.open('User created successfully','', {
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top'
+        }); 
+        this.router.navigate(['/login']);    
       }
     }
+  }
+
+  public handleError(error: any, sb) : Promise<any>{
+    console.error('Something has gone wrong Error: '+error.type);
+    sb.open('There is an error on the User creation, try with a different username','', {
+      duration: 5000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top'
+    }); 
+    return Promise.reject(error.message || error);
   }
 }

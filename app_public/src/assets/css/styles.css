@@ -19,6 +19,15 @@ footer{
 .mat-toolbar-row{
     height: 90px !important;
 }
+.mat-table{
+    margin: 2em auto;
+    width: 100%;
+    background-color: #292e33 !important;
+}
+.tablepic{
+    height: 80px;
+    width: 80px;
+}
 .menu-spacer {
     flex: 1 1 auto;
 }

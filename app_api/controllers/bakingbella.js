@@ -481,7 +481,8 @@ const createProduct = function(req,res){
         name : req.body.name,
         picture : req.body.picture,
         basePrice : req.body.basePrice,
-        category : req.body.category 
+        category : req.body.category,
+        quantity : req.body.quantity        
     },(err, productdata) => {
         if(err){
             res.status(404).json(err);
@@ -518,7 +519,7 @@ const updateProduct = function(req,res){
             prod.picture = req.body.picture;
             prod.basePrice = req.body.basePrice;
             prod.category = req.body.category;
-
+            prod.quantity = req.body.quantity;   
             prod.save((err, prod) => {
                 if (err) {
                     res.status(404)

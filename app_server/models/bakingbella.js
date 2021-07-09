@@ -79,7 +79,11 @@ const productSchema = new mongoose.Schema({
         required : true
     },
     category : {
-        type: String,//Check if this works
+        type: String,
+        required : true
+    },
+    quantity : {
+        type: Number,
         required : true
     }
 });

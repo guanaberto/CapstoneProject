@@ -36,5 +36,6 @@ export class Product {
     name : String;
     picture : String;
     basePrice : Number;
-    category : String;//Check if we could add ProductCat directly
+    category : String;
+    quantity : Number;
 }
