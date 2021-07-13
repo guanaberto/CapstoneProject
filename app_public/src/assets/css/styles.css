@@ -7,7 +7,33 @@ footer{
     text-align: center;
     padding: 40px;
     margin-left: auto;
-    margin-right: auto;
+    margin-right: auto;    
+}
+.footerflex{
+    display: flex;
+}
+.part1{
+    flex: 33%;
+    list-style-type: none;
+    text-align: left;    
+}
+.part1 ul li {
+    list-style:none;
+}
+.part2{
+    flex: 33%;
+    text-align: center;
+}
+.part2 .mainlogo{
+    height: 175px;
+    margin: 0 auto;
+}
+.part3{
+    flex: 33%;
+    text-align: right;
+}
+.part3 ul li {
+    list-style:none;
 }
 .mainbutton .mat-icon-button{
     height: 80px !important;

@@ -24,10 +24,28 @@
   <mat-icon (click)="scroll('primarytoolbar')">keyboard_arrow_up</mat-icon>
 </button>
 <!-- -->
-<footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-daa9">
-    <div class="u-clearfix u-sheet u-sheet-1">
-        <p class="u-small-text u-text u-text-variant u-text-1">
-            © 2021 | Daniel | Gurminder | Dilpreet | Onkar
-        </p>
-    </div>
+<footer>
+  <div class="footerflex">
+    <div class="part1"> 
+      <ul>
+        <li><a mat-button [routerLink]="'/coupons'">Coupons</a></li>
+        <li><a mat-button (click)="scroll('about')">About Us</a></li>
+        <li><a mat-button (click)="scroll('products')">Our Products</a></li>
+        <li><a mat-button (click)="scroll('contactus')">Contact Us</a></li>
+      </ul>     
+    </div>  
+    <div class="part2">
+      <img class="mainlogo" src="../../assets/pics/logo.png" alt="" >
+    </div> 
+    <div class="part3">
+      <ul>
+        <li><img src="../../assets/icons/facebook.png" alt="" ></li>
+        <li><img src="../../assets/icons/instagram.png" alt="" ></li>
+        <li><img src="../../assets/icons/twitter.png" alt="" ></li>
+      </ul>
+    </div>  
+  </div>
+  <div class="fullfooter">
+    <p>© 2021 | Daniel | Gurminder | Dilpreet | Onkar</p>
+  </div>
 </footer>
