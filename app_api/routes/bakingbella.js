@@ -4,7 +4,7 @@ const router = express.Router();
 
 const mainCtrl = require('../controllers/bakingbella');
 router.route('/users').get(mainCtrl.getUser).post(mainCtrl.createUser);
-router.route('/users/:userid').put(mainCtrl.updateUser).delete(mainCtrl.deleteUser);
+router.route('/users/:userid').get(mainCtrl.getSingleUserById).put(mainCtrl.updateUser).delete(mainCtrl.deleteUser);
 router.route('/users/:username/:passwd').get(mainCtrl.getSingleUser);
 
 router.route('/products/').get(mainCtrl.getProduct).post(mainCtrl.createProduct);

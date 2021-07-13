@@ -3,7 +3,7 @@ body{
 }
 footer{
     color: #ffffff;
-    background-color: #292e33;
+    background-color: #3c0f4f;
     text-align: center;
     padding: 40px;
     margin-left: auto;
@@ -32,8 +32,8 @@ footer{
     flex: 1 1 auto;
 }
 
-.mainlogo{
-    margin-left: 20%;
+.mainbutton{
+    margin-left: 2%;
 }
 
 .carousel-cell > img{
@@ -181,9 +181,9 @@ footer{
     line-height: 1.8vw;
 }
 
-.contactus img{
-    flex: 50%;    
-    width: 50%;
+.contactus iframe{
+    flex: 75%;
+    height: 30vw;
 }
 
 #scrollupbutton{
@@ -191,4 +191,66 @@ footer{
     bottom: 20px;
     right: 20px;
     z-index: 10000;
+}
+
+.shoppinglistprods{
+    display: flex;
+    flex-direction: row; 
+    flex-wrap: wrap;
+    
+}
+.shoppinglistprods img{
+    height: 200px;
+    width: 200px;
+}
+.shoppinglistprods mat-card{
+    width: 200px;
+    margin: 6px auto;
+    text-align: center;
+}
+
+.shoppinglist{
+    max-width: 80%;
+    margin: 0 auto;
+    margin: 30px auto;
+}
+.shoppinglist h2{
+    text-align: center;
+}
+
+.shoppinglist mat-card{
+    background-color: #292e33 !important;    
+}
+.shoppinglist .itemcard{
+    background-color: #696969 !important;
+}
+.shoppinglist mat-card-title{
+    margin-top: 5px !important;
+    font-size: 19px !important;    
+    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;    
+}
+.outofstock{
+    color: red;
+}
+
+.shoppinglist mat-card-subtitle{
+    font-size: 16px !important;
+}
+
+
+snack-bar-container.success {
+    background-color:lightseagreen;
+}
+
+snack-bar-container.error {
+    background-color:palevioletred;
+}
+
+snack-bar-container.notification {
+    font-size: 18px !important;
+    color:white;
+    font-weight:bold;
 }

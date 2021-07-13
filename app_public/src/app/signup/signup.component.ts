@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { BakingBellaDataService } from '../baking-bella-data.service';
 import { Event, ShoppingList, User } from '../bakingbella';
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'app-signup',
@@ -42,7 +43,7 @@ export class SignupComponent implements OnInit {
   }
 
   
-  constructor(private _sb: MatSnackBar, private fb: FormBuilder,private router: Router,private bakingBellaService : BakingBellaDataService) {
+  constructor(private ns: NotificationService, private fb: FormBuilder,private router: Router,private bakingBellaService : BakingBellaDataService) {
     this.form = this.fb.group({
       firstname : ['', Validators.required],
       lastname : [''],
@@ -83,24 +84,16 @@ export class SignupComponent implements OnInit {
         this.newus.type = "user";        
         
         //Call the service TODO: verify current users to show notification error
-        await this.bakingBellaService.createUser(this.newus).catch(error=>this.handleError(error, this._sb));
-        this._sb.open('User created successfully','', {
-          duration: 3000,
-          horizontalPosition: 'center',
-          verticalPosition: 'top'
-        }); 
+        await this.bakingBellaService.createUser(this.newus).catch(error=>this.handleError(error, this.ns));
+        this.ns.success('User created successfully'); 
         this.router.navigate(['/login']);    
       }
     }
   }
 
-  public handleError(error: any, sb) : Promise<any>{
+  public handleError(error: any, ns) : Promise<any>{
     console.error('Something has gone wrong Error: '+error.type);
-    sb.open('There is an error on the User creation, try with a different username','', {
-      duration: 5000,
-      horizontalPosition: 'center',
-      verticalPosition: 'top'
-    }); 
+    ns.error('There is an error on the User creation, try with a different username'); 
     return Promise.reject(error.message || error);
   }
 }

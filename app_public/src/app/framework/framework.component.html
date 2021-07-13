@@ -9,10 +9,11 @@
       <span class="menu-spacer"></span>
       <div>
         <a mat-button [routerLink]="'/coupons'">Coupons</a>
-        <a mat-button [routerLink]="'/login'">Your Account</a>
         <a mat-button (click)="scroll('about')">About Us</a>
         <a mat-button (click)="scroll('products')">Our Products</a>
         <a mat-button (click)="scroll('contactus')">Contact Us</a>
+        <a mat-button [routerLink]="'/login'"><mat-icon>person</mat-icon></a>
+        <button *ngIf="isLoggedIn" (click)="logout()" mat-icon-button><mat-icon>power_settings_new</mat-icon></button>
       </div>
     </mat-toolbar-row>
     

@@ -40,6 +40,10 @@ export class BakingBellaDataService {
     const url: string = `${this.apiBaseUrl}/users/`;
     return this.http.get(url).toPromise().then(response => response as User[]).catch(this.handleError);
   }
+  async getSingleUserById(id : string) : Promise<User>{
+    const url: string = `${this.apiBaseUrl}/users/${id}`;
+    return this.http.get(url).toPromise().then(response => response as User).catch(this.handleError);
+  }
   async getSingleUser(username : string, password : string) : Promise<User>{
     const url: string = `${this.apiBaseUrl}/users/${username}/${password}`;
     return this.http.get(url).toPromise().then(response => response[0] as User).catch(this.handleError);

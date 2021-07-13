@@ -15,6 +15,22 @@ const getUser = function(req,res){
     });        
 };
 
+const getSingleUserById = function(req,res){
+    const userid = req.params.userid;
+    User.findById(userid)
+        .exec((err, user) => {
+            if(!user){
+                return res.status(404).json({
+                    "message" : "User not found "+userid
+                });
+            }else if(err){
+                return res.status(404).json(err);
+            }
+            console.log("findById complete");
+            res.status(200).json(user);
+        });
+};
+
 const getSingleUser = function(req,res){
     const username = req.params.username;
     const passwd = req.params.passwd;
@@ -684,6 +700,7 @@ const deleteProductCat = function(req,res){
 module.exports = {
     //User
     getUser,
+    getSingleUserById,
     getSingleUser,
     createUser,
     updateUser,

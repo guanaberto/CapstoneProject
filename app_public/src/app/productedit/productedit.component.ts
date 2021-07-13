@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BakingBellaDataService } from '../baking-bella-data.service';
 import { Product } from '../bakingbella';
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'app-productedit',
@@ -12,7 +13,7 @@ import { Product } from '../bakingbella';
 })
 export class ProducteditComponent implements OnInit {
   form: FormGroup;
-  cats: String[] = ['Cakes','Sandwiches','Beverages','Italian','Pastry'];
+  cats: String[] = ['Cakes','Sandwiches','Beverages','Italian','Pastry','Ice Cream'];
   editP : Product = {
     _id:'',
     name:'',
@@ -22,7 +23,7 @@ export class ProducteditComponent implements OnInit {
     quantity: 0
   };
 
-  constructor(private _sb: MatSnackBar, public bakingBellaService : BakingBellaDataService, private fb: FormBuilder,private router: Router, private route : ActivatedRoute) { 
+  constructor(private ns: NotificationService, public bakingBellaService : BakingBellaDataService, private fb: FormBuilder,private router: Router, private route : ActivatedRoute) { 
     this.form = this.fb.group({
       name: ['', Validators.required],
       category: ['', Validators.required],      
@@ -67,19 +68,11 @@ export class ProducteditComponent implements OnInit {
       if(this.editP._id){
         //is an edit
         await this.bakingBellaService.updateProduct(this.editP);
-        this._sb.open('Product updated successfully','', {
-          duration: 3000,
-          horizontalPosition: 'center',
-          verticalPosition: 'top'
-        }); 
+        this.ns.success('Product updated successfully'); 
       }else{
         //is new
         await this.bakingBellaService.createProduct(this.editP);
-        this._sb.open('Product created successfully','', {
-          duration: 3000,
-          horizontalPosition: 'center',
-          verticalPosition: 'top'
-        }); 
+        this.ns.success('Product created successfully'); 
       }
       this.router.navigate(['/productlist']);          
     }

@@ -1,1 +1,16 @@
-<p>shoppinglist here!!</p>
+<section class="shoppinglist">
+    <mat-card>
+        <h2>Available products</h2>            
+        <div class="shoppinglistprods">    
+            <mat-card class="itemcard" *ngFor="let product of products">
+                <mat-card-content>
+                    <img src="{{product.picture}}"/>
+                    <mat-card-title>{{product.name}}</mat-card-title>
+                    <mat-card-subtitle>${{product.basePrice}}</mat-card-subtitle>
+                    <p class="outofstock" *ngIf="product.quantity < 1">Out Of Stock</p>
+                    <p *ngIf="product.quantity > 0">Available</p>
+                </mat-card-content>
+            </mat-card>           
+        </div>
+    </mat-card>
+</section>
