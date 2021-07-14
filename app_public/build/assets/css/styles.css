@@ -1,7 +1,47 @@
 body{
     background-color:#7c7197 !important;
 }
-.mat-icon-button{
+footer{
+    color: #ffffff;
+    background-color: #3c0f4f;
+    text-align: center;
+    padding: 40px;
+    margin-left: auto;
+    margin-right: auto;   
+    margin-bottom: 60px; 
+}
+ul{
+    padding-inline-start: 0px;
+}
+.footerflex{
+    display: flex;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+.part1{
+    flex: 33%;
+    list-style-type: none;
+    text-align: left;    
+}
+.part1 ul li {
+    list-style:none;
+}
+.part2{
+    flex: 33%;
+    text-align: center;
+}
+.part2 .mainlogo{
+    height: 175px;
+    margin: 0 auto;
+}
+.part3{
+    flex: 33%;
+    text-align: right;
+}
+.part3 ul li {
+    list-style:none;
+}
+.mainbutton .mat-icon-button{
     height: 80px !important;
     width: 80px !important;
 }
@@ -11,12 +51,21 @@ body{
 .mat-toolbar-row{
     height: 90px !important;
 }
+.mat-table{
+    margin: 2em auto;
+    width: 100%;
+    background-color: #292e33 !important;
+}
+.tablepic{
+    height: 80px;
+    width: 80px;
+}
 .menu-spacer {
     flex: 1 1 auto;
 }
 
-.mainlogo{
-    margin-left: 20%;
+.mainbutton{
+    margin-left: 2%;
 }
 
 .carousel-cell > img{
@@ -41,7 +90,7 @@ body{
 .carousel-cell > p{
     position: absolute;
     right: 15%;
-    bottom: 39%;
+    bottom: 37%;
     left: 15%;
     z-index: 10;
     padding-top: 20px;
@@ -110,6 +159,11 @@ body{
     text-align: center;
     background-color: #292e33;
     color: #fff;    
+    padding-top: 50px;
+}
+
+.products .title{
+    opacity: 1;
 }
 
 .productgroup{
@@ -125,21 +179,39 @@ body{
 }
 
 /* Responsive layout - makes a one column-layout instead of a two-column layout */
-@media (max-width: 800px) {
+@media (max-width: 960px) {
     .prod1, .prod2, .prod3 {
         flex: 100%;
     }
-    .mat-toolbar-row a{
-        font-size: 11px !important;
-        padding: 2px !important;
+    .mainbutton{
+        width: 84%;
+        text-align: center;
     }
-
+    .productgroup {
+        flex-direction: column;
+    }
+    .footerflex{
+        flex-direction: column;
+        text-align: center;
+        margin-left: 0%;
+        margin-right: 0%;
+    }
+    .part1, .part2, .part3{
+        text-align: center;    
+    }
+    .part2 .mainlogo {
+        height: 100px;
+    }
+    .part3 ul{
+        columns: 3;
+    }
 }
 
 .contactus{
     background-color: #FFF;
     display: flex;
     margin: 0 auto;
+    color: gray !important;
 }
 
 .contactus div{
@@ -149,7 +221,6 @@ body{
 }
 
 .contactus div h2{
-    color: gray !important;
     font-size: 4vw !important;
     margin-bottom: 4vw !important;
 }
@@ -159,18 +230,9 @@ body{
     line-height: 1.8vw;
 }
 
-.contactus img{
-    flex: 50%;    
-    width: 50%;
-}
-
-footer{
-    color: #ffffff;
-    background-color: #292e33;
-    text-align: center;
-    padding: 40px;
-    margin-left: auto;
-    margin-right: auto;
+.contactus iframe{
+    flex: 75%;
+    height: 30vw;
 }
 
 #scrollupbutton{
@@ -178,4 +240,77 @@ footer{
     bottom: 20px;
     right: 20px;
     z-index: 10000;
+}
+
+.shoppinglistprods{
+    display: flex;
+    flex-direction: row; 
+    flex-wrap: wrap;
+    
+}
+.shoppinglistprods img{
+    height: 200px;
+    width: 200px;
+}
+.shoppinglistprods mat-card{
+    width: 200px;
+    margin: 6px auto;
+    text-align: center;
+}
+
+.shoppinglist{
+    max-width: 80%;
+    margin: 0 auto;
+    margin: 30px auto;
+}
+.shoppinglist h2{
+    text-align: center;
+}
+
+.shoppinglist mat-card{
+    background-color: #292e33 !important;    
+}
+.shoppinglist .itemcard{
+    background-color: #696969 !important;
+}
+.shoppinglist mat-card-title{
+    margin-top: 5px !important;
+    font-size: 19px !important;    
+    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;    
+}
+.outofstock{
+    color: red;
+}
+
+.shoppinglist mat-card-subtitle{
+    font-size: 16px !important;
+}
+
+
+snack-bar-container.success {
+    background-color:lightseagreen;
+}
+
+snack-bar-container.error {
+    background-color:palevioletred;
+}
+
+snack-bar-container.notification {
+    font-size: 18px !important;
+    color:white;
+    font-weight:bold;
+}
+
+.mat-drawer-container{
+    background-color: #7c7197 !important;
+}
+
+mat-sidenav{
+  height: 100%;
+  overflow-y: hidden; 
+  display: flex; 
+  flex-direction: column;
 }
