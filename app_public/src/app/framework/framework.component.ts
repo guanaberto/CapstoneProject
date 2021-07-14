@@ -1,4 +1,4 @@
-import { Location, } from '@angular/common';
+import { Location, ViewportScroller, } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
@@ -11,7 +11,7 @@ import { AuthService } from '../auth.service';
 export class FrameworkComponent implements OnInit {
   isLoggedIn = false;
 
-  public constructor(private router: Router, private location : Location, private authService : AuthService) { 
+  public constructor(private scroller: ViewportScroller, private router: Router, private location : Location, private authService : AuthService) { 
     
   }
 
@@ -21,10 +21,11 @@ export class FrameworkComponent implements OnInit {
 
   }
 
-  public scroll(str : string):void {
+  public scroll(str : string) : void{
     if(location.pathname==='/'){
       var element = document.getElementById(str);
-      element!.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+      element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+      //this.scroller.scrollToAnchor(str);
     }else{
       this.router.navigate(['/'],{fragment: str});  
     }

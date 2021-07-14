@@ -29,6 +29,7 @@ import { ShoppinglistComponent } from './shoppinglist/shoppinglist.component';
 import { ProductlistComponent } from './productlist/productlist.component';
 import { ProducteditComponent } from './productedit/productedit.component';
 import { MatSelectModule } from '@angular/material/select';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 
@@ -54,6 +55,7 @@ const routerOptions: ExtraOptions = {
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
@@ -72,6 +74,7 @@ const routerOptions: ExtraOptions = {
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    FlexLayoutModule,
     RouterModule.forRoot([
       {
         path: '',

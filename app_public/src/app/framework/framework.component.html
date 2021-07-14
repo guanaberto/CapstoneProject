@@ -1,8 +1,85 @@
-<mat-toolbar id="primarytoolbar" color="primary">
+<div id="maindiv" style="height: 100%; overflow: hidden;">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <!--Menu button, only visible in small screens-->
+      <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div class="mainbutton">
+        <button  [routerLink]="'/'" mat-icon-button>
+          <img class="mainlogo" src="../../assets/pics/logo.png" alt="" height="100%">
+        </button>
+      </div>
+      <span class="menu-spacer"></span>
+      <div fxShow="true" fxHide.lt-md>
+        <a mat-button [routerLink]="'/coupons'">Coupons</a>
+        <a mat-button (click)="scroll('about')">About Us</a>
+        <a mat-button (click)="scroll('products')">Our Products</a>
+        <a mat-button (click)="scroll('contactus')">Contact Us</a>
+        <a mat-button [routerLink]="'/login'"><mat-icon>person</mat-icon></a>
+        <button *ngIf="isLoggedIn" (click)="logout()" mat-icon-button><mat-icon>power_settings_new</mat-icon></button>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-sidenav-container fxFlexFill>
+    <mat-sidenav #sidenav>
+      <mat-nav-list>
+        <a (click)="sidenav.toggle()" mat-list-item>Close</a>
+        <a mat-list-item [routerLink]="'/coupons'" (click)="sidenav.toggle();">Coupons</a>
+        <a mat-list-item (click)="sidenav.toggle(); scroll('about');" >About Us</a>
+        <a mat-list-item (click)="sidenav.toggle(); scroll('products');">Our Products</a>
+        <a mat-list-item (click)="sidenav.toggle(); scroll('contactus');">Contact Us</a>
+        <a mat-list-item (click)="sidenav.toggle();" [routerLink]="'/login'"><mat-icon>person</mat-icon></a>
+        <a mat-list-item *ngIf="isLoggedIn" (click)="sidenav.toggle(); logout();"><mat-icon>power_settings_new</mat-icon></a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill>
+      <div id="top"></div>
+      <router-outlet id="mainnav"></router-outlet>
+
+      <!--Scroll up button--> 
+      <button mat-fab color="primary" id="scrollupbutton">
+        <mat-icon (click)="scroll('top')">keyboard_arrow_up</mat-icon>
+      </button>
+      <!-- -->
+      <footer>
+        <div class="footerflex">
+          <div class="part1"> 
+            <ul>
+              <li><a mat-button [routerLink]="'/coupons'">Coupons</a></li>
+              <li><a mat-button (click)="scroll('about')">About Us</a></li>
+              <li><a mat-button (click)="scroll('products')">Our Products</a></li>
+              <li><a mat-button (click)="scroll('contactus')">Contact Us</a></li>
+            </ul>     
+          </div>  
+          <div class="part2">
+            <img class="mainlogo" src="../../assets/pics/logo.png" alt="" >
+          </div> 
+          <div class="part3">
+            <ul>
+              <li><a href="https://www.facebook.com/_bakingbella/" target="_blank"><img src="../../assets/icons/facebook.png" alt="" ></a></li>
+              <li><a href="https://www.instagram.com/_bakingbella/" target="_blank"><img src="../../assets/icons/instagram.png" alt="" ></a></li>
+              <li><a href="https://www.twitter.com/_bakingbella/" target="_blank"><img src="../../assets/icons/twitter.png" alt="" ></a></li>
+            </ul>
+          </div>  
+        </div>
+        <div class="fullfooter">
+          <p>© 2021 | Daniel | Gurminder | Dilpreet | Onkar</p>
+        </div>
+      </footer>
+
+
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+
+
+<!--<mat-toolbar color="primary">
     <mat-toolbar-row>
       <div class="mainbutton">
         <button  [routerLink]="'/'" mat-icon-button>
-          <!--<mat-icon >menu</mat-icon>(click)="sidenav.toggle()"-->
           <img class="mainlogo" src="../../assets/pics/logo.png" alt="" height="100%">
         </button>
       </div>
@@ -15,37 +92,6 @@
         <a mat-button [routerLink]="'/login'"><mat-icon>person</mat-icon></a>
         <button *ngIf="isLoggedIn" (click)="logout()" mat-icon-button><mat-icon>power_settings_new</mat-icon></button>
       </div>
-    </mat-toolbar-row>
-    
-</mat-toolbar>
-<router-outlet></router-outlet>
-<!--Scroll up button-->
-<button mat-fab color="primary" id="scrollupbutton">
-  <mat-icon (click)="scroll('primarytoolbar')">keyboard_arrow_up</mat-icon>
-</button>
-<!-- -->
-<footer>
-  <div class="footerflex">
-    <div class="part1"> 
-      <ul>
-        <li><a mat-button [routerLink]="'/coupons'">Coupons</a></li>
-        <li><a mat-button (click)="scroll('about')">About Us</a></li>
-        <li><a mat-button (click)="scroll('products')">Our Products</a></li>
-        <li><a mat-button (click)="scroll('contactus')">Contact Us</a></li>
-      </ul>     
-    </div>  
-    <div class="part2">
-      <img class="mainlogo" src="../../assets/pics/logo.png" alt="" >
-    </div> 
-    <div class="part3">
-      <ul>
-        <li><img src="../../assets/icons/facebook.png" alt="" ></li>
-        <li><img src="../../assets/icons/instagram.png" alt="" ></li>
-        <li><img src="../../assets/icons/twitter.png" alt="" ></li>
-      </ul>
-    </div>  
-  </div>
-  <div class="fullfooter">
-    <p>© 2021 | Daniel | Gurminder | Dilpreet | Onkar</p>
-  </div>
-</footer>
+    </mat-toolbar-row>    
+</mat-toolbar>-->
+

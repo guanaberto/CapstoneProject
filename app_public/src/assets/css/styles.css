@@ -7,10 +7,16 @@ footer{
     text-align: center;
     padding: 40px;
     margin-left: auto;
-    margin-right: auto;    
+    margin-right: auto;   
+    margin-bottom: 60px; 
+}
+ul{
+    padding-inline-start: 0px;
 }
 .footerflex{
     display: flex;
+    margin-left: 15%;
+    margin-right: 15%;
 }
 .part1{
     flex: 33%;
@@ -173,21 +179,39 @@ footer{
 }
 
 /* Responsive layout - makes a one column-layout instead of a two-column layout */
-@media (max-width: 800px) {
+@media (max-width: 960px) {
     .prod1, .prod2, .prod3 {
         flex: 100%;
     }
-    .mat-toolbar-row a{
-        font-size: 11px !important;
-        padding: 2px !important;
+    .mainbutton{
+        width: 84%;
+        text-align: center;
     }
-
+    .productgroup {
+        flex-direction: column;
+    }
+    .footerflex{
+        flex-direction: column;
+        text-align: center;
+        margin-left: 0%;
+        margin-right: 0%;
+    }
+    .part1, .part2, .part3{
+        text-align: center;    
+    }
+    .part2 .mainlogo {
+        height: 100px;
+    }
+    .part3 ul{
+        columns: 3;
+    }
 }
 
 .contactus{
     background-color: #FFF;
     display: flex;
     margin: 0 auto;
+    color: gray !important;
 }
 
 .contactus div{
@@ -197,7 +221,6 @@ footer{
 }
 
 .contactus div h2{
-    color: gray !important;
     font-size: 4vw !important;
     margin-bottom: 4vw !important;
 }
@@ -279,4 +302,15 @@ snack-bar-container.notification {
     font-size: 18px !important;
     color:white;
     font-weight:bold;
+}
+
+.mat-drawer-container{
+    background-color: #7c7197 !important;
+}
+
+mat-sidenav{
+  height: 100%;
+  overflow-y: hidden; 
+  display: flex; 
+  flex-direction: column;
 }

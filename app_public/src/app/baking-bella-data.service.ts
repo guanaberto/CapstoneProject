@@ -34,6 +34,31 @@ export class BakingBellaDataService {
     const url: string = `${this.apiBaseUrl}/products/${id}`;
     return this.http.delete(url).toPromise().then().catch(this.handleError);
   }
+
+  //Product Categories
+  public getProductCats() : Promise<ProductCat[]>{
+    const url: string = `${this.apiBaseUrl}/productcats/`;
+    return this.http.get(url).toPromise().then(response => response as ProductCat[]).catch(this.handleError);
+  }
+  public getSingleProductCat(idProductCat) : Promise<ProductCat>{
+    const url: string = `${this.apiBaseUrl}/productcats/${idProductCat}`;
+    return this.http.get(url).toPromise().then(response => response as ProductCat).catch(this.handleError);
+  }
+
+  public updateProductCat(editProductCat: ProductCat) : Promise<Product>{
+    const url: string = `${this.apiBaseUrl}/productcats/${editProductCat._id}`;
+    return this.http.put(url,editProductCat).toPromise().then(response => response as ProductCat).catch(this.handleError);
+  }
+  
+  public createProductCat(newProductCat: ProductCat): Promise<void | ProductCat>{
+    const url: string = `${this.apiBaseUrl}/productcats/`;
+    return this.http.post(url, newProductCat).toPromise().then(response => response as ProductCat).catch(this.handleError);
+  }
+
+  public deleteProductCat(id) : Promise<void> {
+    const url: string = `${this.apiBaseUrl}/productcats/${id}`;
+    return this.http.delete(url).toPromise().then().catch(this.handleError);
+  }
   
   //User
   public getUsers() : Promise<User[]>{
