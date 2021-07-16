@@ -17,15 +17,18 @@ export class FrameworkComponent implements OnInit {
 
   ngOnInit(): void {
     //this.isLoggedIn=this.authService.verifyLogin();
-    this.authService.verifyLogin().subscribe(value => this.isLoggedIn=value);
-
+    this.authService.verifyLogin().subscribe(value => this.isLoggedIn=value);    
   }
 
   public scroll(str : string) : void{
     if(location.pathname==='/'){
       var element = document.getElementById(str);
-      element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
-      //this.scroller.scrollToAnchor(str);
+      
+      var container = document.getElementById('matsidenavcontent'); 
+      container.scrollTo({
+                          top: element.offsetTop,
+                          behavior: 'smooth'
+                        });
     }else{
       this.router.navigate(['/'],{fragment: str});  
     }

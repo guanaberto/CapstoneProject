@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -18,9 +19,18 @@ export class HomePageComponent implements OnInit {
     {path: '../../assets/carouselpics/9.jpg'}
   ];
 
-  constructor() { }
+  constructor(private route : ActivatedRoute) { }
 
   ngOnInit(): void {
+    /*var container = document.getElementById('matsidenavcontent'); 
+    this.route.fragment.subscribe((fragment: string) => 
+    {
+      var container = document.getElementById(fragment); 
+      container.scrollTo({
+        top: container.offsetTop,
+        behavior: 'smooth'
+      });
+      console.log('Holi' + fragment);  
+    })*/
   }
-
 }

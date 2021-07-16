@@ -222,12 +222,13 @@ ul{
 
 .contactus div h2{
     font-size: 4vw !important;
-    margin-bottom: 4vw !important;
+    margin-bottom: 4vw !important;    
 }
 
 .contactus div p{
-    font-size: 1.5vw !important;
+    font-size: 1.6vw !important;
     line-height: 1.8vw;
+    color: #000;
 }
 
 .contactus iframe{

@@ -34,7 +34,7 @@
         <a mat-list-item *ngIf="isLoggedIn" (click)="sidenav.toggle(); logout();"><mat-icon>power_settings_new</mat-icon></a>
       </mat-nav-list>
     </mat-sidenav>
-    <mat-sidenav-content fxFlexFill>
+    <mat-sidenav-content id="matsidenavcontent" fxFlexFill>
       <div id="top"></div>
       <router-outlet id="mainnav"></router-outlet>
 
@@ -73,25 +73,3 @@
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
-
-
-
-<!--<mat-toolbar color="primary">
-    <mat-toolbar-row>
-      <div class="mainbutton">
-        <button  [routerLink]="'/'" mat-icon-button>
-          <img class="mainlogo" src="../../assets/pics/logo.png" alt="" height="100%">
-        </button>
-      </div>
-      <span class="menu-spacer"></span>
-      <div>
-        <a mat-button [routerLink]="'/coupons'">Coupons</a>
-        <a mat-button (click)="scroll('about')">About Us</a>
-        <a mat-button (click)="scroll('products')">Our Products</a>
-        <a mat-button (click)="scroll('contactus')">Contact Us</a>
-        <a mat-button [routerLink]="'/login'"><mat-icon>person</mat-icon></a>
-        <button *ngIf="isLoggedIn" (click)="logout()" mat-icon-button><mat-icon>power_settings_new</mat-icon></button>
-      </div>
-    </mat-toolbar-row>    
-</mat-toolbar>-->
-
