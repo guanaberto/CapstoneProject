@@ -1,6 +1,8 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+var cors = require('cors');
+
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 // my version
@@ -14,6 +16,7 @@ require('./app_server/models/db');
 var apiRouter = require('./app_api/routes/bakingbella');
 
 var app = express();
+
 
 // view engine setup
 /*app.set('views', path.join(__dirname, 'views'));
@@ -57,5 +60,24 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+//To solve problem with localhost and CORS
+const whitelist = ['http://localhost:3000']; // list of allow domain
+const corsOptions = {
+  origin: function (origin, callback) {
+      if (!origin) {
+          return callback(null, true);
+      }
+
+      if (whitelist.indexOf(origin) === -1) {
+          var msg = 'The CORS policy for this site does not ' +
+              'allow access from the specified Origin.';
+          return callback(new Error(msg), false);
+      }
+      return callback(null, true);
+  }
+}
+app.use(cors(corsOptions));
+
 
 module.exports = app;
