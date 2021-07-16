@@ -23,8 +23,13 @@ export class ProductlistComponent implements OnInit {
       return;
 
     await this.bakingBellaService.deleteProduct(productid);
-    window.location.reload();
+    //window.location.reload();
+    //refresh the products
+    await this.bakingBellaService.getProducts().then(foundProducts => this.dataSource = foundProducts);    
+    this.router.navigate(['/productlist/']);
   }
+
+  
 
   async edit(productid : string){
     this.router.navigate(['/productedit/'+productid]);
