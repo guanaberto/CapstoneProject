@@ -8,7 +8,7 @@ import { Product, ProductCat, User, Event, ShoppingList} from './bakingbella';
 export class BakingBellaDataService {
   constructor(private http: HttpClient) { }
 
-  private apiBaseUrl = 'http://bakingbella.herokuapp.com/api';
+  private apiBaseUrl = 'http://localhost:3000/api';
 
   //Product
   public getProducts() : Promise<Product[]>{
