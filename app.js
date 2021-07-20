@@ -30,13 +30,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // to add in the future and relate with Angular
 app.use('/api',(req, res, next) => {
+  const allowedOrigins = ['http://localhost:4200', 'https://bakingbella.herokuapp.com'];
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+       res.setHeader('Access-Control-Allow-Origin', origin);
+  }
   //res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
-  res.header('Access-Control-Allow-Origin', 'https://bakingbella.herokuapp.com');
+  //res.header('Access-Control-Allow-Origin', 'https://bakingbella.herokuapp.com');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
   next();
 });
-
 
 //Commented to remove PUG: app.use('/', indexRouter);
 //to add in the future and relate with Angular 
@@ -61,24 +65,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-//To solve problem with localhost and CORS
-const whitelist = ['http://localhost:3000']; // list of allow domain
-const corsOptions = {
-  origin: function (origin, callback) {
-      if (!origin) {
-          return callback(null, true);
-      }
-
-      if (whitelist.indexOf(origin) === -1) {
-          var msg = 'The CORS policy for this site does not ' +
-              'allow access from the specified Origin.';
-          return callback(new Error(msg), false);
-      }
-      return callback(null, true);
-  }
-}
-app.use(cors(corsOptions));
-
 
 module.exports = app;

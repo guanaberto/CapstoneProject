@@ -42,7 +42,6 @@ export class LoginComponent implements OnInit {
       
       await this.bakingBellaService.getSingleUser(username, password).then(foundUser => us = foundUser);
       
-      console.log(us);
       if(!us){
         this.loginInvalid = true;
         this.ns.error('Login Invalid');        

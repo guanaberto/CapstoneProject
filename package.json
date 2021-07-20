@@ -13,6 +13,7 @@
     "http-errors": "~1.6.3",
     "mongoose": "^5.12.13",
     "morgan": "~1.9.1",
-    "pug": "2.0.0-beta11"
+    "nodemailer": "^6.6.3",
+    "pug": "^3.0.2"
   }
 }
