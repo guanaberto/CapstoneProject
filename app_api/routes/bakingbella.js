@@ -19,6 +19,8 @@ router.route('/users/:userid/events/:eventid').get(mainCtrl.getSingleEvent).dele
 router.route('/users/:userid/shoppinglists').post(mainCtrl.createShoppingList);
 router.route('/users/:userid/shoppinglists/:shoplistid').get(mainCtrl.getSingleShoppingList).delete(mainCtrl.deleteShoppingList).put(mainCtrl.updateShoppingList);
 
-//comment
+//Email
+const emailCtrl = require('../controllers/email');
+router.route('/email/:to/:subject/:body*').get(emailCtrl.sendEmail);
 
 module.exports = router;

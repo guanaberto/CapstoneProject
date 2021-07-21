@@ -139,6 +139,11 @@ export class BakingBellaDataService {
     return this.http.delete(url).toPromise().then().catch(this.handleError);
   }
 
+  //Email Service
+  public sendEmail(to: string, subject: string, body: string) : Promise<string>{
+    const url: string = `${this.apiBaseUrl}/email/${to}/${subject}/${body}`;
+    return this.http.get(url).toPromise().then(response => response as string).catch(this.handleError);
+  }
 
   private handleError(error: any): Promise<any>{
     console.error('Something has gone wrong');

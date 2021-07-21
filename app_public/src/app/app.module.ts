@@ -30,6 +30,7 @@ import { ProductlistComponent } from './productlist/productlist.component';
 import { ProducteditComponent } from './productedit/productedit.component';
 import { MatSelectModule } from '@angular/material/select';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ContactformComponent } from './contactform/contactform.component';
 
 
 
@@ -51,7 +52,8 @@ const routerOptions: ExtraOptions = {
     LoginComponent,
     ShoppinglistComponent,
     ProductlistComponent,
-    ProducteditComponent
+    ProducteditComponent,
+    ContactformComponent
   ],
   imports: [
     BrowserModule,
@@ -107,6 +109,10 @@ const routerOptions: ExtraOptions = {
       {
         path: 'productedit',
         component: ProducteditComponent
+      },
+      {
+        path: 'contactform',
+        component: ContactformComponent
       }
     ], routerOptions),
     BrowserAnimationsModule
