@@ -36,6 +36,20 @@
     </mat-sidenav>
     <mat-sidenav-content id="matsidenavcontent" fxFlexFill>
       <div id="top"></div>
+
+      <mat-toolbar color="accent" *ngIf="isLoggedIn">
+        <mat-toolbar-row>
+          <!--fxShow="true" fxHide.lt-md>-->
+          <ul class="ulnavbar">
+            <li><a mat-button [routerLink]="'/productlist'">Products</a></li>
+            <li><a mat-button [routerLink]="'/eventlist'">Events</a></li>
+          </ul>          
+        </mat-toolbar-row>
+      </mat-toolbar>
+
+
+
+
       <router-outlet id="mainnav"></router-outlet>
 
       <!--Scroll up button--> 

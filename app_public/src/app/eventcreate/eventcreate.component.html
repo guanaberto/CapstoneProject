@@ -1,0 +1,26 @@
+<mat-card class="form-mat-card">
+    <mat-card-content>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <h2>Create a New Event</h2>
+            <mat-form-field class="full-width-input">
+                <input matInput placeholder="Event Name" formControlName="name" required>                
+            </mat-form-field>
+            <mat-form-field class="full-width-input">
+                <input matInput type="datetime-local" placeholder="Event Date" formControlName="date" [min]="minDate" [max]="maxDate" required>
+                <!--[matDatepicker]="picker"-->
+                <!--<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>-->
+            </mat-form-field>
+            <mat-form-field class="full-width-input">
+                <mat-select placeholder="Type" formControlName="type" required>
+                    <mat-option *ngFor="let type of types" [value]="type">
+                      {{type}}
+                    </mat-option>
+                  </mat-select>           
+            </mat-form-field>
+            <button mat-raised-button color="primary">Create</button>    
+            <mat-divider [inset]="true"></mat-divider>
+            <button mat-raised-button color="accent" [routerLink]="'/eventlist'">Back</button>
+        </form>
+    </mat-card-content>
+</mat-card>

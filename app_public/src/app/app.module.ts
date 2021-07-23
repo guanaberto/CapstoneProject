@@ -31,9 +31,9 @@ import { ProducteditComponent } from './productedit/productedit.component';
 import { MatSelectModule } from '@angular/material/select';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ContactformComponent } from './contactform/contactform.component';
-
-
-
+import { EventcreateComponent } from './eventcreate/eventcreate.component';
+import { DatePipe } from '@angular/common';
+import { EventlistComponent } from './eventlist/eventlist.component';
 
 
 
@@ -53,7 +53,9 @@ const routerOptions: ExtraOptions = {
     ShoppinglistComponent,
     ProductlistComponent,
     ProducteditComponent,
-    ContactformComponent
+    ContactformComponent,
+    EventcreateComponent,
+    EventlistComponent
   ],
   imports: [
     BrowserModule,
@@ -113,11 +115,19 @@ const routerOptions: ExtraOptions = {
       {
         path: 'contactform',
         component: ContactformComponent
+      },
+      {
+        path: 'eventcreate',
+        component: EventcreateComponent
+      },
+      {
+        path: 'eventlist',
+        component: EventlistComponent
       }
     ], routerOptions),
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [FrameworkComponent]
 })
 export class AppModule { }

@@ -90,10 +90,6 @@ export class BakingBellaDataService {
   }
 
   //Event
-  public getEvents(userId: string) : Promise<Event[]>{
-    const url: string = `${this.apiBaseUrl}/users/${userId}/events/`;
-    return this.http.get(url).toPromise().then(response => response as Event[]).catch(this.handleError);
-  }
   async getSingleEvent(userId: string, eventId: string) : Promise<Event>{
     const url: string = `${this.apiBaseUrl}/users/${userId}/events/${eventId}`;
     return this.http.get(url).toPromise().then(response => response[0] as Event).catch(this.handleError);
@@ -115,10 +111,6 @@ export class BakingBellaDataService {
   }
 
   //Shopping List
-  public getShoppingList(userId: string) : Promise<ShoppingList[]>{
-    const url: string = `${this.apiBaseUrl}/users/${userId}/shoppinglists/`;
-    return this.http.get(url).toPromise().then(response => response as ShoppingList[]).catch(this.handleError);
-  }
   async getSingleShoppingList(userId: string, shoppingListId: string) : Promise<ShoppingList>{
     const url: string = `${this.apiBaseUrl}/users/${userId}/shoppinglists/${shoppingListId}`;
     return this.http.get(url).toPromise().then(response => response[0] as ShoppingList).catch(this.handleError);
