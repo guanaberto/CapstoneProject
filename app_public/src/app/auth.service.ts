@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { User } from './bakingbella';
+import { Product, User } from './bakingbella';
 import { NotificationService } from './notification.service';
 
 @Injectable({
@@ -11,6 +11,7 @@ import { NotificationService } from './notification.service';
 export class AuthService {
   private isLoggedIn: BehaviorSubject<boolean>;
   private isAdmin: BehaviorSubject<boolean>;
+  //shoppingProducts = new BehaviorSubject(this.theProducts);
 
   constructor(private router: Router, private ns : NotificationService) { 
     this.isLoggedIn = new BehaviorSubject<boolean>(false);
@@ -66,4 +67,20 @@ export class AuthService {
     this.router.navigate(['/login']);
     
   } 
+
+  //To set and get the cart products on the Localstorage
+  /*checkShoppingCart(){
+    if(!this.theProducts){
+      //this.theProducts = 
+    }
+  }
+
+  set theProducts(value:Product[]) {
+    this.shoppingProducts.next(value); // this will make sure to tell every subscriber about the change.
+    localStorage.setItem('cartproducts', JSON.stringify(value));
+  }
+ 
+  get theProducts() {
+    return JSON.parse(localStorage.getItem('cartproducts'));
+  }*/
 }

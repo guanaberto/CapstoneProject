@@ -1,44 +1,44 @@
 import {Component, OnInit} from '@angular/core';
 
 export class Event{
-    _id : String;
-    name : String;
+    _id : string;
+    name : string;
     datetime : Date;
-    type : String;
-    status: String;
+    type : string;
+    status: string;
 }
 
 export class ShoppingList{
-    _id : String;
-    quantity : Number;
-    totalprice : Number;
-    product_id : String;
+    _id : string;
+    quantity : number;
+    totalprice : number;
+    product_id : string;
 }
 
 export class User{
-    _id : String;
-    firstName : String;
-    lastName : String;
-    password : String;
+    _id : string;
+    firstName : string;
+    lastName : string;
+    password : string;
     DOB : Date;
-    type : String;
-    username : String;
+    type : string;
+    username : string;
     events : Event[];
     shoppinglists : ShoppingList[];
 }
 
 export class ProductCat{
-    _id : String;
-    name : String;
+    _id : string;
+    name : string;
 }
 
 export class Product {
-    _id : String;
-    name : String;
-    picture : String;
-    basePrice : Number;
-    category : String;
-    quantity : Number;
+    _id : string;
+    name : string;
+    picture : string;
+    basePrice : number;
+    category : string;
+    quantity : number;
 }
 
 //Wrapper Object

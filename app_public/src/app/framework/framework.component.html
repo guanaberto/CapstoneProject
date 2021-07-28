@@ -17,6 +17,8 @@
         <a mat-button (click)="scroll('products')">Our Products</a>
         <a mat-button (click)="scroll('contactus')">Contact Us</a>
         <a mat-button [routerLink]="'/login'"><mat-icon>person</mat-icon></a>
+        <a mat-button [routerLink]="'/cart'" *ngIf="cartProducts.length"><mat-icon [matBadge]="cartProducts.length" matBadgeColor="warn">shopping_cart</mat-icon></a>
+
         <button *ngIf="isLoggedIn" (click)="logout()" mat-icon-button><mat-icon>power_settings_new</mat-icon></button>
       </div>
     </mat-toolbar-row>

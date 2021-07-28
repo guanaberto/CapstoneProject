@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Product Detail</h1>
+<div mat-dialog-content>
+  <img src="{{data.picture}}" class="dialogpic"/>
+  <h2>{{data.name}}</h2>
+  <p>${{data.basePrice}}</p>
+  <div class="outofstock" *ngIf="data.quantity < 1">Out Of Stock</div>
+  <div *ngIf="data.quantity > 0">Available</div>
+  
+  <form [formGroup]="form"> <!--(ngSubmit)="onSubmit()">-->
+    <mat-form-field class="full-width-input">
+      <input matInput type="number" min="1" [max]="data.quantity" name="quantity"  formControlName="quantity" required>      
+      <mat-error>There are only {{data.quantity}} products available</mat-error>      
+    </mat-form-field>  
+    <button color="primary" mat-raised-button (click)="addtocart()"><mat-icon>add_shopping_cart</mat-icon></button>
+  </form>
+</div>

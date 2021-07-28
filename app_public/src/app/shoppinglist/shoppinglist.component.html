@@ -4,11 +4,12 @@
         <div class="shoppinglistprods">    
             <mat-card class="itemcard" *ngFor="let product of products">
                 <mat-card-content>
-                    <img src="{{product.picture}}"/>
+                    <img (click)="openDialog(product)" src="{{product.picture}}"/>
                     <mat-card-title>{{product.name}}</mat-card-title>
                     <mat-card-subtitle>${{product.basePrice}}</mat-card-subtitle>
                     <p class="outofstock" *ngIf="product.quantity < 1">Out Of Stock</p>
                     <p *ngIf="product.quantity > 0">Available</p>
+                    <button color="basic" mat-raised-button (click)="openDialog(product)">Select</button>
                 </mat-card-content>
             </mat-card>           
         </div>

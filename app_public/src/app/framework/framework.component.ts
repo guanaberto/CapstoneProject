@@ -2,6 +2,8 @@ import { Location, ViewportScroller, } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { Product } from '../bakingbella';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-framework',
@@ -11,14 +13,16 @@ import { AuthService } from '../auth.service';
 export class FrameworkComponent implements OnInit {
   isLoggedIn = false;
   isAdmin = false;
+  cartProducts = [];
 
-  public constructor(private scroller: ViewportScroller, private router: Router, private location : Location, private authService : AuthService) { 
+  public constructor(private scroller: ViewportScroller, private router: Router, private location : Location, private authService : AuthService, private cart : CartService) { 
     
   }
 
   ngOnInit(): void {
-    this.authService.verifyLogin().subscribe(value => this.isLoggedIn=value);    
-    this.authService.verifyAdmin().subscribe(value => this.isAdmin=value);
+    this.authService.verifyLogin().subscribe(v => this.isLoggedIn=v);    
+    this.authService.verifyAdmin().subscribe(v => this.isAdmin=v);
+    this.cart.verifyCart().subscribe(v => this.cartProducts=v);
   }
 
   public scroll(str : string) : void{

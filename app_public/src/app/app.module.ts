@@ -18,6 +18,9 @@ import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatTableModule} from '@angular/material/table';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatDialogModule} from '@angular/material/dialog';
+
 
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { CouponsComponent } from './coupons/coupons.component';
@@ -25,7 +28,7 @@ import { SignupComponent } from './signup/signup.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
-import { ShoppinglistComponent } from './shoppinglist/shoppinglist.component';
+import { ShoppinglistComponent, ShoppinglistDialog } from './shoppinglist/shoppinglist.component';
 import { ProductlistComponent } from './productlist/productlist.component';
 import { ProducteditComponent } from './productedit/productedit.component';
 import { MatSelectModule } from '@angular/material/select';
@@ -59,7 +62,8 @@ const routerOptions: ExtraOptions = {
     ContactformComponent,
     EventcreateComponent,
     EventlistComponent,
-    EventlistmanagerComponent
+    EventlistmanagerComponent,
+    ShoppinglistDialog
   ],
   imports: [
     BrowserModule,
@@ -80,6 +84,8 @@ const routerOptions: ExtraOptions = {
     MatSelectModule,
     MatPaginatorModule,
     MatSortModule,
+    MatBadgeModule,
+    MatDialogModule,
     IvyCarouselModule,
     HttpClientModule,
     FormsModule,

@@ -348,6 +348,16 @@ mat-sidenav{
     margin-right: 5px !important;
 }
 
+.dialogpic{
+    height: 500px !important;
+    width: 500px !important;
+    object-fit: cover;
+}
+
+mat-card img{
+    object-fit: cover;
+}
+
 /* Responsive layout - makes a one column-layout instead of a two-column layout */
 @media (max-width: 960px) {
     .prod1, .prod2, .prod3 {
@@ -385,4 +395,10 @@ mat-sidenav{
     .mat-toolbar-row{
         height: 100% !important;
     }
+
+    .dialogpic{
+        height: 350px !important;
+        width: 350px !important;
+    }
+
 }
