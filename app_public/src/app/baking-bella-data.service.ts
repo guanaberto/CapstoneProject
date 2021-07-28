@@ -6,9 +6,16 @@ import { Product, ProductCat, User, Event, ShoppingList, EventUser} from './baki
   providedIn: 'root'
 })
 export class BakingBellaDataService {
-  constructor(private http: HttpClient) { }
+  private apiBaseUrl;
 
-  private apiBaseUrl = 'http://localhost:3000/api';
+  constructor(private http: HttpClient) {
+    //Solve heroku problems with API
+    if(window.location.hostname==="localhost"){
+      this.apiBaseUrl = 'http://localhost:3000/api';
+    }else{
+      this.apiBaseUrl = window.location.origin+"/api";
+    }
+  }
 
   //Product
   public getProducts() : Promise<Product[]>{
