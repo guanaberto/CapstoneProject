@@ -174,37 +174,8 @@ ul{
 
 .prod1, .prod2, .prod3{
     flex: 33%;
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
-
-/* Responsive layout - makes a one column-layout instead of a two-column layout */
-@media (max-width: 960px) {
-    .prod1, .prod2, .prod3 {
-        flex: 100%;
-    }
-    .mainbutton{
-        width: 84%;
-        text-align: center;
-    }
-    .productgroup {
-        flex-direction: column;
-    }
-    .footerflex{
-        flex-direction: column;
-        text-align: center;
-        margin-left: 0%;
-        margin-right: 0%;
-    }
-    .part1, .part2, .part3{
-        text-align: center;    
-    }
-    .part2 .mainlogo {
-        height: 100px;
-    }
-    .part3 ul{
-        columns: 3;
-    }
+    margin-top: 50px !important;
+    margin-bottom: 50px !important;
 }
 
 .contactus{
@@ -314,4 +285,120 @@ mat-sidenav{
   overflow-y: hidden; 
   display: flex; 
   flex-direction: column;
+}
+
+.form-mat-card {
+    max-width: 400px;
+    margin: 2em auto;
+    text-align: center;  
+    background-color: #292e33;
+}
+  
+.form-mat-card mat-form-field {
+    display: block;
+}
+
+.form-mat-card button{
+    min-width: 100%;
+    margin: 2em auto;
+}
+
+.list-mat-card {
+    max-width: 70%;
+    margin: 2em auto;
+    background-color: #292e33;
+}
+
+.list-mat-card h2{
+    text-align: center;  
+}
+
+.list-mat-card th {
+    font-size: 18px;
+}
+
+.list-mat-card .newBtn{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+/*Date icon to white*/
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+.mat-toolbar.mat-accent {
+    background: #3c0f4f !important;
+    color: white !important;
+}
+
+.ulnavbar{
+    columns: 3;
+    margin: auto;
+    text-align: center !important;
+}
+
+.ulnavbar li{
+    list-style: none;
+    
+}
+
+.mat-stroked-button{
+    margin-right: 5px !important;
+}
+
+.dialogpic{
+    height: 500px !important;
+    width: 500px !important;
+    object-fit: cover;
+}
+
+mat-card img{
+    object-fit: cover;
+}
+
+/* Responsive layout - makes a one column-layout instead of a two-column layout */
+@media (max-width: 960px) {
+    .prod1, .prod2, .prod3 {
+        flex: 100%;
+    }
+    .mainbutton{
+        width: 84%;
+        text-align: center;
+    }
+    .productgroup {
+        flex-direction: column;
+    }
+    .footerflex{
+        flex-direction: column;
+        text-align: center;
+        margin-left: 0%;
+        margin-right: 0%;
+    }
+    .part1, .part2, .part3{
+        text-align: center;    
+    }
+    .part2 .mainlogo {
+        height: 100px;
+    }
+    .part3 ul{
+        columns: 3;
+    }
+    .ulnavbar{
+        columns: auto;        
+        width: 100%;        
+    }
+    .ulnavbar a{
+        width: 100%;
+    }
+    .mat-toolbar-row{
+        height: 100% !important;
+    }
+
+    .dialogpic{
+        height: 350px !important;
+        width: 350px !important;
+    }
+
 }
