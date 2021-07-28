@@ -137,7 +137,7 @@ const deleteUser = function(req,res){
     }
 };
 
-//TODO add Event and shopping lists creator here
+//Event
 const getSingleEvent = function(req,res){
     const { userid, eventid } = req.params;
     if (!userid || !eventid) {
@@ -183,12 +183,14 @@ const createEvent = (req, res) => {
                         .status(400)
                         .json(err);
                 } else {                    
-                    const { name, datetime, type } = req.body;
+                    const { name, datetime, type, status } = req.body;
                     user.events.push({
                         name,
                         datetime,
-                        type
+                        type,
+                        status
                     });
+                    console.log(name, datetime, type, status);
                     user.save((err, user) => {
                         if (err) {
                             res
@@ -281,6 +283,7 @@ const updateEvent = (req, res) => {
                     thisevent.name = req.body.name;
                     thisevent.datetime = req.body.datetime;
                     thisevent.type = req.body.type;
+                    thisevent.status = req.body.status;
                     user.save(err => {
                         if (err) {
                             return res

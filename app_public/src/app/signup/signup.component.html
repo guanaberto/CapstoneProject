@@ -25,7 +25,9 @@
             <mat-error *ngIf="passwordinvalid">
                 The password should be the same as the confirmation
             </mat-error>
-            <button mat-raised-button color="primary">Create User</button>            
+            <button mat-raised-button color="primary">Create User</button>   
+            <mat-divider [inset]="true"></mat-divider>
+            <button mat-raised-button color="accent" [routerLink]="'/login'">Back</button>             
         </form>
     </mat-card-content>
 </mat-card>

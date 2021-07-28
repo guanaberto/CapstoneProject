@@ -36,17 +36,27 @@
     </mat-sidenav>
     <mat-sidenav-content id="matsidenavcontent" fxFlexFill>
       <div id="top"></div>
-
-      <mat-toolbar color="accent" *ngIf="isLoggedIn">
+      <!--User toolbar-->
+      <mat-toolbar color="accent" *ngIf="isLoggedIn && !isAdmin">
         <mat-toolbar-row>
-          <!--fxShow="true" fxHide.lt-md>-->
           <ul class="ulnavbar">
-            <li><a mat-button [routerLink]="'/productlist'">Products</a></li>
+            <li><a mat-button [routerLink]="'/shoppinglist'">Products</a></li>
             <li><a mat-button [routerLink]="'/eventlist'">Events</a></li>
+            <li><a mat-button [routerLink]="'/orders'">Orders</a></li>
           </ul>          
         </mat-toolbar-row>
       </mat-toolbar>
-
+      <!--Admin toolbar-->
+      <mat-toolbar color="accent" *ngIf="isLoggedIn && isAdmin">
+        <mat-toolbar-row>
+          <ul class="ulnavbar">            
+            <li><a mat-button [routerLink]="'/productlist'">Products</a></li>
+            <li><a mat-button [routerLink]="'/eventlistmanager'">Events</a></li>
+            <li><a mat-button [routerLink]="'/'">Orders</a></li>
+          </ul>          
+        </mat-toolbar-row>
+      </mat-toolbar>
+      
 
 
 

@@ -5,6 +5,7 @@ export class Event{
     name : String;
     datetime : Date;
     type : String;
+    status: String;
 }
 
 export class ShoppingList{
@@ -38,4 +39,15 @@ export class Product {
     basePrice : Number;
     category : String;
     quantity : Number;
+}
+
+//Wrapper Object
+export class EventUser {
+    event : Event;
+    user : User;
+
+    constructor (ev:Event, us: User){
+        this.event = ev;
+        this.user = us;
+    }
 }

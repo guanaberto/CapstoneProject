@@ -22,6 +22,7 @@ export class SignupComponent implements OnInit {
     _id: '',
     name: '',
     type: '',
+    status: '',
     datetime: new Date()
   }
   newshoppinglist : ShoppingList = {
@@ -83,7 +84,7 @@ export class SignupComponent implements OnInit {
         this.newus.password = password;
         this.newus.type = "user";        
         
-        //Call the service TODO: verify current users to show notification error
+        //Call the service
         await this.bakingBellaService.createUser(this.newus).catch(error=>this.handleError(error, this.ns));
         this.ns.success('User created successfully'); 
         this.router.navigate(['/login']);    

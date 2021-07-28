@@ -174,8 +174,8 @@ ul{
 
 .prod1, .prod2, .prod3{
     flex: 33%;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 50px !important;
+    margin-bottom: 50px !important;
 }
 
 .contactus{
@@ -335,12 +335,17 @@ mat-sidenav{
 
 .ulnavbar{
     columns: 3;
-    margin-left: 33px;
+    margin: auto;
+    text-align: center !important;
 }
 
 .ulnavbar li{
     list-style: none;
     
+}
+
+.mat-stroked-button{
+    margin-right: 5px !important;
 }
 
 /* Responsive layout - makes a one column-layout instead of a two-column layout */
@@ -372,10 +377,12 @@ mat-sidenav{
     }
     .ulnavbar{
         columns: auto;        
-        width: 100%;
-        margin-left: 0px;
+        width: 100%;        
     }
     .ulnavbar a{
         width: 100%;
+    }
+    .mat-toolbar-row{
+        height: 100% !important;
     }
 }

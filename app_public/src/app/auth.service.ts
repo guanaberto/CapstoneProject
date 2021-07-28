@@ -10,11 +10,11 @@ import { NotificationService } from './notification.service';
 })
 export class AuthService {
   private isLoggedIn: BehaviorSubject<boolean>;
-  private type: BehaviorSubject<String>;
+  private isAdmin: BehaviorSubject<boolean>;
 
   constructor(private router: Router, private ns : NotificationService) { 
     this.isLoggedIn = new BehaviorSubject<boolean>(false);
-    this.type = new BehaviorSubject<String>('user');
+    this.isAdmin = new BehaviorSubject<boolean>(false);
   }
 
   verifyLogin() : Observable<boolean> {
@@ -33,31 +33,37 @@ export class AuthService {
     return localStorage.getItem("token");
   }
 
-  getType(): Observable<String>{
-    return this.type.asObservable();
+  verifyAdmin(): Observable<boolean>{
+    this.isAdmin.next(localStorage.getItem('isAd')==="administrator" ? true : false);
+    return this.isAdmin.asObservable();
   }
 
   login(us: User): void {
     localStorage.setItem("isLoggedIn", "true");
     localStorage.setItem("token", us._id.toString());
+    localStorage.setItem("isAd", ""+us.type);
     this.isLoggedIn.next(true);
-    this.type.next(us.type);
+    this.isAdmin.next(us.type==="administrator" ? true : false);
+
     this.redirect(us);
   }
 
   redirect(us: User){
     if(us.type==="administrator"){
-      this.router.navigate(['/productlist']);//.then(a=>window.location.reload());        
+      this.router.navigate(['/productlist']);
     }else{
-      this.router.navigate(['/shoppinglist']);//.then(a=>window.location.reload());        
+      this.router.navigate(['/shoppinglist']);
     }    
   }
 
   logout(): void {
     localStorage.setItem("isLoggedIn", "false");
     localStorage.removeItem("token");
+    localStorage.removeItem("isAd");
+      
+    this.verifyAdmin();
 
-    this.router.navigate(['/login']);//.then(a=>window.location.reload()); 
+    this.router.navigate(['/login']);
     
   } 
 }

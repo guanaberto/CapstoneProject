@@ -13,7 +13,7 @@ import { NotificationService } from '../notification.service';
 })
 export class ProducteditComponent implements OnInit {
   form: FormGroup;
-  cats: String[] = ['Cakes','Sandwiches','Beverages','Italian','Pastry','Ice Cream'];
+  cats: String[] = ['Cakes','Cookies','Donuts','Bread','Pizza','Shakes'];
   editP : Product = {
     _id:'',
     name:'',

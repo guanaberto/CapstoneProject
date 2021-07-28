@@ -10,7 +10,7 @@ import { Event } from '../bakingbella';
   styleUrls: ['./eventlist.component.css']
 })
 export class EventlistComponent implements OnInit {
-  displayedColumns: string[] = ['name','datetime', 'type'];
+  displayedColumns: string[] = ['name','datetime', 'type', 'status'];
   dataSource : Event[];
 
   

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
-import { Product, ProductCat, User, Event, ShoppingList} from './bakingbella';
+import { Product, ProductCat, User, Event, ShoppingList, EventUser} from './bakingbella';
 
 @Injectable({
   providedIn: 'root'
@@ -90,12 +90,31 @@ export class BakingBellaDataService {
   }
 
   //Event
+  async getEventUsers() : Promise<EventUser[]>{
+    const url: string = `${this.apiBaseUrl}/users`;
+    return this.http.get(url).toPromise().then(response => this.getEv(response as User[])).catch(this.handleError);
+  }
+
+  dataSource : EventUser[];
+  
+  getEv(us : User[]) : EventUser[]{
+    this.dataSource = [];
+    us.forEach(
+      u => u.events.forEach(
+          e => {
+            this.dataSource.push(new EventUser(e,u));          
+          }
+      )
+    );
+    return this.dataSource;
+  }
+
   async getSingleEvent(userId: string, eventId: string) : Promise<Event>{
     const url: string = `${this.apiBaseUrl}/users/${userId}/events/${eventId}`;
     return this.http.get(url).toPromise().then(response => response[0] as Event).catch(this.handleError);
   }
 
-  public updateEvent(userId: string, editEvent: Event) : Promise<Event>{
+  public updateEvent(userId: String, editEvent: Event) : Promise<Event>{
     const url: string = `${this.apiBaseUrl}/users/${userId}/events/${editEvent._id}`;
     return this.http.put(url,editEvent).toPromise().then(response => response as Event).catch(this.handleError);
   }
@@ -132,7 +151,7 @@ export class BakingBellaDataService {
   }
 
   //Email Service
-  public sendEmail(to: string, subject: string, body: string) : Promise<string>{
+  public sendEmail(to: String, subject: string, body: string) : Promise<string>{
     const url: string = `${this.apiBaseUrl}/email/${to}/${subject}/${body}`;
     return this.http.get(url).toPromise().then(response => response as string).catch(this.handleError);
   }

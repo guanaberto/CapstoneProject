@@ -34,6 +34,9 @@ import { ContactformComponent } from './contactform/contactform.component';
 import { EventcreateComponent } from './eventcreate/eventcreate.component';
 import { DatePipe } from '@angular/common';
 import { EventlistComponent } from './eventlist/eventlist.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { EventlistmanagerComponent } from './eventlistmanager/eventlistmanager.component';
+import { MatSortModule } from '@angular/material/sort';
 
 
 
@@ -55,7 +58,8 @@ const routerOptions: ExtraOptions = {
     ProducteditComponent,
     ContactformComponent,
     EventcreateComponent,
-    EventlistComponent
+    EventlistComponent,
+    EventlistmanagerComponent
   ],
   imports: [
     BrowserModule,
@@ -74,6 +78,8 @@ const routerOptions: ExtraOptions = {
     MatTableModule,
     MatOptionModule,
     MatSelectModule,
+    MatPaginatorModule,
+    MatSortModule,
     IvyCarouselModule,
     HttpClientModule,
     FormsModule,
@@ -101,6 +107,10 @@ const routerOptions: ExtraOptions = {
         component: ShoppinglistComponent
       },
       {
+        path: 'shoppinglist/:cat',
+        component: ShoppinglistComponent
+      },
+      {
         path: 'productlist',
         component: ProductlistComponent
       },
@@ -123,6 +133,10 @@ const routerOptions: ExtraOptions = {
       {
         path: 'eventlist',
         component: EventlistComponent
+      },
+      {
+        path: 'eventlistmanager',
+        component: EventlistmanagerComponent
       }
     ], routerOptions),
     BrowserAnimationsModule

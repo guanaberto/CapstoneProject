@@ -22,21 +22,22 @@ export class EventcreateComponent implements OnInit {
     name:'',
     datetime: new Date(),
     type:'',
+    status: 'Pending'
   }
   
   constructor(private authService:AuthService, public datepipe: DatePipe, private ns: NotificationService, public bakingBellaService : BakingBellaDataService, private fb: FormBuilder,public router : Router) { 
-    this.form = this.fb.group({
-      name: ['', Validators.required],
-      date: ['', Validators.required],      
-      type: ['', Validators.required]   
-    }); 
-
     //Date validation times
     const currentDate = new Date();
-    this.minDate = this.datepipe.transform(new Date(), 'yyyy-MM-ddThh:mm');
-    this.maxDate = this.datepipe.transform(new Date(currentDate.setMonth(currentDate.getMonth()+2)), 'yyyy-MM-ddThh:mm');
-    console.log(this.minDate);
-    console.log(this.maxDate);
+    this.minDate = this.datepipe.transform(currentDate.setDate(currentDate.getDate()+1), 'yyyy-MM-ddThh:mm');
+    this.maxDate = this.datepipe.transform(currentDate.setMonth(currentDate.getMonth()+2), 'yyyy-MM-ddThh:mm');    
+    
+    this.form = this.fb.group({
+      name: ['', Validators.required],
+      date: [this.minDate, Validators.required],      
+      type: ['', Validators.required]      
+    }); 
+
+    
   }
 
   ngOnInit(): void {
@@ -47,10 +48,11 @@ export class EventcreateComponent implements OnInit {
       const name = this.form.get('name')?.value;
       const date = this.form.get('date')?.value;
       const type = this.form.get('type')?.value;
-
+      
       this.newEvent.name = name;
       this.newEvent.datetime = date;
       this.newEvent.type = type;
+      this.newEvent.status = "Pending";
 
       await this.bakingBellaService.createEvent(this.authService.getToken(), this.newEvent);
 
