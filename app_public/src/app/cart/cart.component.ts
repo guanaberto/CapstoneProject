@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BakingBellaDataService } from '../baking-bella-data.service';
-import { CartProduct, Product } from '../bakingbella';
+import { CartProduct, Order, Product } from '../bakingbella';
 import { CartService } from '../cart.service';
 
 @Component({
@@ -15,7 +15,30 @@ export class CartComponent implements OnInit {
   dataSource : CartProduct[] = [];
   secondFormGroup: FormGroup;
 
-  constructor(private bakingBellaService : BakingBellaDataService, private cart : CartService, private fb: FormBuilder) { }
+  orderObject : Order = {
+    _id : "",
+    datetime : new Date(),
+    status : "",
+    country : "",
+    phone : "",
+    email : "",
+    user_id : "",
+    total : 0,
+    taxes : 0,
+    cityAddress : "",
+    companyName : "",
+    firstName : "",
+    lastName : "",
+    postalCode : "",
+    streetAddress : "",
+    provinceAddress : "",
+    shoppinglists : []
+  };
+  
+
+  constructor(private bakingBellaService : BakingBellaDataService, private cart : CartService, private fb: FormBuilder) { 
+
+  }
 
   ngOnInit(): void {
     var cartmap = this.cart.getCartMap();
@@ -25,7 +48,16 @@ export class CartComponent implements OnInit {
     
     //Form
     this.secondFormGroup = this.fb.group({
-      secondCtrl: ['', Validators.required]
+      country : ['', Validators.required],
+      phone : ['', Validators.required],
+      email : ['', Validators.required],
+      cityAddress : ['', Validators.required],
+      companyName : [''],
+      firstName : ['', Validators.required],
+      lastName : ['', Validators.required],
+      postalCode : ['', Validators.required],
+      streetAddress : ['', Validators.required],
+      provinceAddress : ['', Validators.required]
     });
   }
 

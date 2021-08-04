@@ -305,51 +305,51 @@ const updateEvent = (req, res) => {
 };
 
 const getSingleShoppingList = function(req,res){
-    const { userid, shoplistid } = req.params;
-    if (!userid || !shoplistid) {
+    const { orderid, shoplistid } = req.params;
+    if (!orderid || !shoplistid) {
         return res
             .status(404)
-            .json({ 'message': 'Not found, userid and shoplistid are both required' });
+            .json({ 'message': 'Not found, orderid and shoplistid are both required' });
     }
 
-    User.findById(userid)
+    Order.findById(orderid)
         .select('shoppinglists')
-        .exec((err, user) => {
-            if (!user) {
+        .exec((err, order) => {
+            if (!order) {
                 return res.status(404)
-                        .json({ 'message': 'User not found' });
+                        .json({ 'message': 'Order not found' });
             } else if (err) {
                 return res.status(400)
                         .json(err);
             }
 
-            if (user.shoppinglists && user.shoppinglists.length > 0) {
-                if (!user.shoppinglists.id(shoplistid)) {
+            if (order.shoppinglists && order.shoppinglists.length > 0) {
+                if (!order.shoppinglists.id(shoplistid)) {
                     return res.status(404)
                             .json({ 'message': 'Shopping List not found' });
                 } else {
                     return res.status(200)
-                            .json(user.shoppinglists.id(shoplistid));                    
+                            .json(order.shoppinglists.id(shoplistid));                    
                 }
             } else {
                 res.status(404)
-                   .json({ 'message': 'The User has no Shopping Lists' });
+                   .json({ 'message': 'The Order has no Shopping Lists' });
             }
         });
 };
 
 const createShoppingList = (req, res) => {
-    const userId = req.params.userid;
-    if (userId) {
-        User.findById(userId)
+    const orderId = req.params.orderid;
+    if (orderId) {
+        Order.findById(orderId)
             .select('shoppinglists')
-            .exec((err, user) => {
+            .exec((err, order) => {
                 if (err) {
                     res
                         .status(400)
                         .json(err);
                 } else {                    
-                    const { quantity, totalprice, product_id, order_id } = req.body;
+                    const { quantity, totalprice, product_id } = req.body;
                     //check if the product exists
                     Product.exists({_id: product_id}, function(err, doc){
                         if(err){
@@ -357,13 +357,12 @@ const createShoppingList = (req, res) => {
                                 .json({ "message": "Related Product not found" });
                         }else{
                             //HERE THE PUSH
-                            user.shoppinglists.push({
+                            order.shoppinglists.push({
                                 quantity,
                                 totalprice,
-                                product_id,
-                                order_id
+                                product_id
                             });
-                            user.save((err, user) => {
+                            order.save((err, order) => {
                                 if (err) {
                                     res
                                         .status(400)
@@ -371,7 +370,7 @@ const createShoppingList = (req, res) => {
                                 } else {
                                     res
                                         .status(201)
-                                        .json(user.shoppinglists);
+                                        .json(order.shoppinglists);
                                 }
                             });
                         }
@@ -381,36 +380,36 @@ const createShoppingList = (req, res) => {
     } else {
         res
             .status(404)
-            .json({ "message": "User not found" });
+            .json({ "message": "Order not found" });
     }
 };
 
 const deleteShoppingList = (req, res) => {
-    const { userid, shoplistid } = req.params;
-    if (!userid || !shoplistid) {
+    const { orderid, shoplistid } = req.params;
+    if (!orderid || !shoplistid) {
         return res
             .status(404)
-            .json({ 'message': 'Not found, userid and shoplistid are both required' });
+            .json({ 'message': 'Not found, orderid and shoplistid are both required' });
     }
 
-    User.findById(userid)
+    Order.findById(orderid)
         .select('shoppinglists')
-        .exec((err, user) => {
-            if (!user) {
+        .exec((err, order) => {
+            if (!order) {
                 return res.status(404)
-                        .json({ 'message': 'User not found' });
+                        .json({ 'message': 'Order not found' });
             } else if (err) {
                 return res.status(400)
                         .json(err);
             }
 
-            if (user.shoppinglists && user.shoppinglists.length > 0) {
-                if (!user.shoppinglists.id(shoplistid)) {
+            if (order.shoppinglists && order.shoppinglists.length > 0) {
+                if (!order.shoppinglists.id(shoplistid)) {
                     return res.status(404)
                             .json({ 'message': 'Shopping List not found' });
                 } else {
-                    user.shoppinglists.id(shoplistid).remove();
-                    user.save(err => {
+                    order.shoppinglists.id(shoplistid).remove();
+                    order.save(err => {
                         if (err) {
                             return res
                                 .status(404)
@@ -430,26 +429,26 @@ const deleteShoppingList = (req, res) => {
 };
 
 const updateShoppingList = (req, res) => {
-    const { userid, shoplistid } = req.params;
-    if (!userid || !shoplistid) {
+    const { orderid, shoplistid } = req.params;
+    if (!orderid || !shoplistid) {
         return res
             .status(404)
-            .json({ 'message': 'Not found, userid and shoplistid are both required' });
+            .json({ 'message': 'Not found, orderid and shoplistid are both required' });
     }
 
-    User.findById(userid)
+    Order.findById(orderid)
         .select('shoppinglists')
-        .exec((err, user) => {
-            if (!user) {
+        .exec((err, order) => {
+            if (!order) {
                 return res.status(404)
-                        .json({ 'message': 'User not found' });
+                        .json({ 'message': 'Order not found' });
             } else if (err) {
                 return res.status(400)
                         .json(err);
             }
 
-            if (user.shoppinglists && user.shoppinglists.length > 0) {
-                if (!user.shoppinglists.id(shoplistid)) {
+            if (order.shoppinglists && order.shoppinglists.length > 0) {
+                if (!order.shoppinglists.id(shoplistid)) {
                     return res.status(404)
                             .json({ 'message': 'Shopping List not found' });
                 } else {
@@ -459,13 +458,12 @@ const updateShoppingList = (req, res) => {
                             res.status(400)
                                 .json({ "message": "Related Product not found" });
                         }else{
-                            const thisshopl = user.shoppinglists.id(shoplistid);
+                            const thisshopl = order.shoppinglists.id(shoplistid);
                             thisshopl.quantity = req.body.quantity;
                             thisshopl.totalprice = req.body.totalprice;
-                            thisshopl.product_id = req.body.product_id;
-                            thisshopl.order_id = req.body.order_id;
+                            thisshopl.product_id = req.body.product_id;                            
                             
-                            user.save(err => {
+                            order.save(err => {
                                 if (err) {
                                     return res
                                         .status(404)
@@ -736,6 +734,7 @@ const createOrder = function(req,res){
         country : req.body.country,
         phone : req.body.phone,
         email : req.body.email,
+        user_id : req.body.user_id,
         total : req.body.total,
         taxes : req.body.taxes,
         cityAddress : req.body.cityAddress,
@@ -743,7 +742,8 @@ const createOrder = function(req,res){
         firstName : req.body.firstName,
         lastName : req.body.lastName,
         postalCode : req.body.postalCode,
-        streetAddress : req.body.streetAddress
+        streetAddress : req.body.streetAddress,
+        provinceAddress : req.body.provinceAddress
     },(err, odata) => {
         if(err){
             res.status(404).json(err);
@@ -782,6 +782,7 @@ const updateOrder = function(req,res){
             order.country = req.body.country;
             order.phone = req.body.phone;
             order.email = req.body.email;
+            order.user_id = req.body.user_id;
             order.total = req.body.total;
             order.taxes = req.body.taxes;
             order.cityAddress = req.body.cityAddress;
@@ -790,6 +791,7 @@ const updateOrder = function(req,res){
             order.lastName = req.body.lastName;
             order.postalCode = req.body.postalCode;
             order.streetAddress = req.body.streetAddress;
+            order.provinceAddress = req.body.provinceAddress;
 
             order.save((err, order) => {
                 if (err) {

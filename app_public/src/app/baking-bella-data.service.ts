@@ -162,23 +162,23 @@ export class BakingBellaDataService {
   }
 
   //Shopping List
-  async getSingleShoppingList(userId: string, shoppingListId: string) : Promise<ShoppingList>{
-    const url: string = `${this.apiBaseUrl}/users/${userId}/shoppinglists/${shoppingListId}`;
+  async getSingleShoppingList(orderId: string, shoppingListId: string) : Promise<ShoppingList>{
+    const url: string = `${this.apiBaseUrl}/orders/${orderId}/shoppinglists/${shoppingListId}`;
     return this.http.get(url).toPromise().then(response => response[0] as ShoppingList).catch(this.handleError);
   }
 
-  public updateShoppingList(userId: string, editShoppingList: ShoppingList) : Promise<ShoppingList>{
-    const url: string = `${this.apiBaseUrl}/users/${userId}/shoppinglists/${editShoppingList._id}`;
+  public updateShoppingList(orderId: string, editShoppingList: ShoppingList) : Promise<ShoppingList>{
+    const url: string = `${this.apiBaseUrl}/orders/${orderId}/shoppinglists/${editShoppingList._id}`;
     return this.http.put(url,editShoppingList).toPromise().then(response => response as ShoppingList).catch(this.handleError);
   }
   
-  public createShoppingList(userId: string, newShoppingList: ShoppingList): Promise<void | ShoppingList>{
-    const url: string = `${this.apiBaseUrl}/users/${userId}/shoppinglists/`;
+  public createShoppingList(orderId: string, newShoppingList: ShoppingList): Promise<void | ShoppingList>{
+    const url: string = `${this.apiBaseUrl}/orders/${orderId}/shoppinglists/`;
     return this.http.post(url, newShoppingList).toPromise().then(response => response as ShoppingList).catch(this.handleError);
   }
 
-  public deleteShoppingList(userId: string, shoppingListId :string) : Promise<void> {
-    const url: string = `${this.apiBaseUrl}/users/${userId}/shoppinglists/${shoppingListId}`;
+  public deleteShoppingList(orderId: string, shoppingListId :string) : Promise<void> {
+    const url: string = `${this.apiBaseUrl}/orders/${orderId}/shoppinglists/${shoppingListId}`;
     return this.http.delete(url).toPromise().then().catch(this.handleError);
   }
 

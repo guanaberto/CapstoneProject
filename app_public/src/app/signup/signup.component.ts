@@ -30,7 +30,6 @@ export class SignupComponent implements OnInit {
     quantity : 0,
     totalprice: 0,
     product_id: '',
-    order_id : ''
   }
   newus : User= {
     _id : '',
@@ -40,8 +39,7 @@ export class SignupComponent implements OnInit {
     username : '',
     password : '',
     type : "user",
-    events : [this.newevent],
-    shoppinglists : [this.newshoppinglist]
+    events : [this.newevent]
   }
 
   

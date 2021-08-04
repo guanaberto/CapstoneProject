@@ -19,8 +19,8 @@ router.route('/orders/:orderid').get(mainCtrl.getSingleOrder).put(mainCtrl.updat
 router.route('/users/:userid/events').post(mainCtrl.createEvent);
 router.route('/users/:userid/events/:eventid').get(mainCtrl.getSingleEvent).delete(mainCtrl.deleteEvent).put(mainCtrl.updateEvent);
 
-router.route('/users/:userid/shoppinglists').post(mainCtrl.createShoppingList);
-router.route('/users/:userid/shoppinglists/:shoplistid').get(mainCtrl.getSingleShoppingList).delete(mainCtrl.deleteShoppingList).put(mainCtrl.updateShoppingList);
+router.route('/orders/:orderid/shoppinglists').post(mainCtrl.createShoppingList);
+router.route('/orders/:orderid/shoppinglists/:shoplistid').get(mainCtrl.getSingleShoppingList).delete(mainCtrl.deleteShoppingList).put(mainCtrl.updateShoppingList);
  
 //Email
 const emailCtrl = require('../controllers/email');

@@ -13,7 +13,6 @@ export class ShoppingList{
     quantity : number;
     totalprice : number;
     product_id : string;
-    order_id : string;
 }
 
 export class User{
@@ -25,7 +24,7 @@ export class User{
     type : string;
     username : string;
     events : Event[];
-    shoppinglists : ShoppingList[];
+    /*shoppinglists : ShoppingList[];MOVED TO ORDERS*/
 }
 
 /*export class ProductCat{
@@ -39,6 +38,7 @@ export class Order{
     country : string;
     phone : string;
     email : string;
+    user_id : string;
     total : number;
     taxes : number;
     cityAddress : string;
@@ -47,6 +47,8 @@ export class Order{
     lastName : string;
     postalCode : string;
     streetAddress : string;
+    provinceAddress : string;
+    shoppinglists : ShoppingList[];
 }
 
 export class Product {

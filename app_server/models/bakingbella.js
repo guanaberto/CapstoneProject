@@ -33,8 +33,7 @@ const shoppinglistSchema = new mongoose.Schema({
     product_id : {
         type: String,
         required: true
-    },
-    order_id : String
+    }
 });
 
 const userSchema = new mongoose.Schema({
@@ -56,8 +55,8 @@ const userSchema = new mongoose.Schema({
         type : String,
         required : true
     },
-    events : [eventSchema],
-    shoppinglists : [shoppinglistSchema]
+    events : [eventSchema]
+    /*shoppinglists : [shoppinglistSchema] MOVED TO ORDERS*/
 });
 
 /*const productcatSchema = new mongoose.Schema({
@@ -81,6 +80,10 @@ const orderSchema = new mongoose.Schema({
         type : String,
         required : true
     },
+    user_id : {
+        type : String,
+        required : true
+    },
     total : Number,
     taxes : Number,
     cityAddress : String,
@@ -88,7 +91,9 @@ const orderSchema = new mongoose.Schema({
     firstName : String,
     lastName : String, 
     postalCode : String,
-    streetAddress : String
+    streetAddress : String,
+    provinceAddress : String,
+    shoppinglists : [shoppinglistSchema]
 });
 
 const productSchema = new mongoose.Schema({
