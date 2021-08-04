@@ -306,7 +306,7 @@ mat-sidenav{
 .list-mat-card {
     max-width: 70%;
     margin: 2em auto;
-    background-color: #292e33;
+    background-color: #292e33 !important;
 }
 
 .list-mat-card h2{
@@ -322,6 +322,24 @@ mat-sidenav{
     right: 20px;
     top: 20px;
 }
+
+.list-mat-card .checkoutBtn{
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}
+
+.carttable{
+    margin-bottom: 60px;
+}
+
+.emptymsg{
+    text-align: center;
+}
+.emptymsg a{
+    color: #faa327;
+}
+
 
 /*Date icon to white*/
 ::-webkit-calendar-picker-indicator {

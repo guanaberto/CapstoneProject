@@ -31,9 +31,10 @@ const shoppinglistSchema = new mongoose.Schema({
         required: true
     },
     product_id : {
-        type: String,//check if this one works
+        type: String,
         required: true
-    }
+    },
+    order_id : String
 });
 
 const userSchema = new mongoose.Schema({
@@ -59,11 +60,35 @@ const userSchema = new mongoose.Schema({
     shoppinglists : [shoppinglistSchema]
 });
 
-const productcatSchema = new mongoose.Schema({
+/*const productcatSchema = new mongoose.Schema({
     name : {
         type : String,
         required : true
     }
+});*/
+const orderSchema = new mongoose.Schema({
+    datetime : {
+        type : Date,
+        required : true
+    },
+    status : {
+        type : String,
+        required : true
+    },
+    country : String,
+    phone : String,
+    email : {
+        type : String,
+        required : true
+    },
+    total : Number,
+    taxes : Number,
+    cityAddress : String,
+    companyName : String,
+    firstName : String,
+    lastName : String, 
+    postalCode : String,
+    streetAddress : String
 });
 
 const productSchema = new mongoose.Schema({
@@ -90,5 +115,6 @@ const productSchema = new mongoose.Schema({
 });
 
 mongoose.model('User', userSchema);
-mongoose.model('Productcat', productcatSchema);
+//mongoose.model('Productcat', productcatSchema);
+mongoose.model('Order', orderSchema);
 mongoose.model('Product', productSchema);

@@ -6,7 +6,7 @@
   <div class="outofstock" *ngIf="data.quantity < 1">Out Of Stock</div>
   <div *ngIf="data.quantity > 0">Available</div>
   
-  <form [formGroup]="form"> <!--(ngSubmit)="onSubmit()">-->
+  <form *ngIf="data.quantity > 0" [formGroup]="form"> <!--(ngSubmit)="onSubmit()">-->
     <mat-form-field class="full-width-input">
       <input matInput type="number" min="1" [max]="data.quantity" name="quantity"  formControlName="quantity" required>      
       <mat-error>There are only {{data.quantity}} products available</mat-error>      

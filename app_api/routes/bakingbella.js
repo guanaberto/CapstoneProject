@@ -10,15 +10,18 @@ router.route('/users/:username/:passwd').get(mainCtrl.getSingleUser);
 router.route('/products/').get(mainCtrl.getProduct).post(mainCtrl.createProduct);
 router.route('/products/:prodid').get(mainCtrl.getSingleProduct).put(mainCtrl.updateProduct).delete(mainCtrl.deleteProduct);
 
-router.route('/productcats/').get(mainCtrl.getProductCat).post(mainCtrl.createProductCat);
-router.route('/productcats/:prodcatid').get(mainCtrl.getSingleProductCat).put(mainCtrl.updateProductCat).delete(mainCtrl.deleteProductCat);
+/*router.route('/productcats/').get(mainCtrl.getProductCat).post(mainCtrl.createProductCat);
+router.route('/productcats/:prodcatid').get(mainCtrl.getSingleProductCat).put(mainCtrl.updateProductCat).delete(mainCtrl.deleteProductCat);*/
+
+router.route('/orders/').get(mainCtrl.getOrder).post(mainCtrl.createOrder);
+router.route('/orders/:orderid').get(mainCtrl.getSingleOrder).put(mainCtrl.updateOrder).delete(mainCtrl.deleteOrder);
 
 router.route('/users/:userid/events').post(mainCtrl.createEvent);
 router.route('/users/:userid/events/:eventid').get(mainCtrl.getSingleEvent).delete(mainCtrl.deleteEvent).put(mainCtrl.updateEvent);
 
 router.route('/users/:userid/shoppinglists').post(mainCtrl.createShoppingList);
 router.route('/users/:userid/shoppinglists/:shoplistid').get(mainCtrl.getSingleShoppingList).delete(mainCtrl.deleteShoppingList).put(mainCtrl.updateShoppingList);
-
+ 
 //Email
 const emailCtrl = require('../controllers/email');
 router.route('/email/:to/:subject/:body*').get(emailCtrl.sendEmail);

@@ -1,0 +1,64 @@
+<mat-card class="list-mat-card">
+    <mat-card-content>
+        <h2>Shopping Cart</h2>
+        <mat-stepper *ngIf="dataSource.length" orientation="vertical" linear="true" #stepper>
+            <mat-step>              
+                <ng-template matStepLabel>Check your products</ng-template>
+                <table *ngIf="dataSource.length" mat-table [dataSource]="dataSource" class="mat-elevation-z8 carttable">
+                    <ng-container matColumnDef="picture">
+                        <th mat-header-cell *matHeaderCellDef> Picture </th>
+                        <td mat-cell *matCellDef="let element"> <img class="tablepic" src="{{element.prod.picture}}"/> </td>  
+                        <td mat-footer-cell *matFooterCellDef></td>              
+                    </ng-container>
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef> Name </th>
+                        <td mat-cell *matCellDef="let element"> {{element.prod.name}} </td>
+                        <td mat-footer-cell *matFooterCellDef></td>
+                    </ng-container>  
+                    <ng-container matColumnDef="quantity">
+                        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                        <td mat-cell *matCellDef="let element"> {{element.quantitySel}} </td>
+                        <td mat-footer-cell *matFooterCellDef></td>
+                    </ng-container>      
+                    <ng-container matColumnDef="price">
+                        <th mat-header-cell *matHeaderCellDef> Price </th>
+                        <td mat-cell *matCellDef="let element"> {{element.prod.basePrice | currency}} </td>
+                        <td mat-footer-cell *matFooterCellDef> TOTAL: </td>
+                    </ng-container> 
+                    <ng-container matColumnDef="totalprice">
+                        <th mat-header-cell *matHeaderCellDef> Total Price </th>
+                        <td mat-cell *matCellDef="let element"> {{element.totalPrice | currency}} </td>
+                        <td mat-footer-cell *matFooterCellDef> {{getTotalCost() | currency}} </td>
+                    </ng-container>    
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+                </table>
+                <div>
+                  <button mat-button matStepperNext>Next</button>
+                </div>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup">
+              <form [formGroup]="secondFormGroup">
+                <ng-template matStepLabel>Fill out your Personal Information</ng-template>
+                <mat-form-field appearance="fill">
+                  <mat-label>Address</mat-label>
+                  <input matInput formControlName="secondCtrl" placeholder="Ex. 200 Allen St, Waterloo, ON" required>
+                </mat-form-field>
+                <div>
+                  <button mat-button matStepperPrevious>Back</button>
+                  <button mat-button matStepperNext>Next</button>
+                </div>
+              </form>
+            </mat-step>            
+          </mat-stepper>
+
+
+
+        
+        <!--<button *ngIf="dataSource.length" class="checkoutBtn" color="primary" mat-raised-button (click)="checkout()">Checkout</button>-->
+        <div class="emptymsg" *ngIf="dataSource.length===0" >
+            Please add items to the cart on the <a [routerLink]="'/shoppinglist'">Product Menu</a>
+        </div>
+    </mat-card-content>
+</mat-card>

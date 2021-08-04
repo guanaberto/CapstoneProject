@@ -65,7 +65,6 @@ export class ShoppinglistDialog {
         this.cart.addToCart(this.data);
       }
 
-      console.log(this.cart.getItems());
       this.dialogRef.close();
     }
   }

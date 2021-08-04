@@ -2,7 +2,8 @@ const { response } = require('express');
 const mongoose = require('mongoose');
 
 const User = mongoose.model('User');
-const ProductCat = mongoose.model('Productcat');
+//const ProductCat = mongoose.model('Productcat');
+const Order = mongoose.model('Order');
 const Product = mongoose.model('Product');
 
 const getUser = function(req,res){
@@ -348,7 +349,7 @@ const createShoppingList = (req, res) => {
                         .status(400)
                         .json(err);
                 } else {                    
-                    const { quantity, totalprice, product_id } = req.body;
+                    const { quantity, totalprice, product_id, order_id } = req.body;
                     //check if the product exists
                     Product.exists({_id: product_id}, function(err, doc){
                         if(err){
@@ -359,7 +360,8 @@ const createShoppingList = (req, res) => {
                             user.shoppinglists.push({
                                 quantity,
                                 totalprice,
-                                product_id
+                                product_id,
+                                order_id
                             });
                             user.save((err, user) => {
                                 if (err) {
@@ -461,6 +463,7 @@ const updateShoppingList = (req, res) => {
                             thisshopl.quantity = req.body.quantity;
                             thisshopl.totalprice = req.body.totalprice;
                             thisshopl.product_id = req.body.product_id;
+                            thisshopl.order_id = req.body.order_id;
                             
                             user.save(err => {
                                 if (err) {
@@ -596,7 +599,7 @@ const getSingleProduct = function(req,res){
         });
 };
 
-const getProductCat = function(req,res){
+/*const getProductCat = function(req,res){
     ProductCat.find().exec(function(err, pcdata) {
         if(err){
             res.status(404).json(err);
@@ -698,6 +701,135 @@ const deleteProductCat = function(req,res){
                 "message": "No Product Cat found"
             });
     }
+};*/
+
+const getOrder = function(req,res){
+    Order.find().exec(function(err, odata) {
+        if(err){
+            res.status(404).json(err);
+            return;
+        }
+        res.status(200).json(odata);
+    });        
+};
+
+const getSingleOrder = function(req,res){
+    const orderid = req.params.orderid;
+    Order.findById(orderid)
+        .exec((err, order) => {
+            if(!order){
+                return res.status(404).json({
+                    "message" : "Order not found"+orderid
+                });
+            }else if(err){
+                return res.status(404).json(err);
+            }
+            console.log("findById complete");
+            res.status(200).json(order);
+        });
+};
+
+const createOrder = function(req,res){
+    Order.create({
+        datetime : req.body.datetime,
+        status : req.body.status,
+        country : req.body.country,
+        phone : req.body.phone,
+        email : req.body.email,
+        total : req.body.total,
+        taxes : req.body.taxes,
+        cityAddress : req.body.cityAddress,
+        companyName : req.body.companyName,
+        firstName : req.body.firstName,
+        lastName : req.body.lastName,
+        postalCode : req.body.postalCode,
+        streetAddress : req.body.streetAddress
+    },(err, odata) => {
+        if(err){
+            res.status(404).json(err);
+            console.log("data received: "+odata);
+            return;
+        }else{
+            res.status(200).json(odata);
+        }
+    }); 
+};
+
+const updateOrder = function(req,res){
+    if (!req.params.orderid) {
+        return res
+            .status(404)
+            .json({
+                "message": "Not found, orderid is required"
+            });
+    }
+    Order.findById(req.params.orderid)
+        .exec((err, order) => {
+            if (!order) {
+                return res
+                    .status(404)
+                    .json({
+                        "message": "order not found"
+                    });
+            } else if (err) {
+                return res
+                    .status(400)
+                    .json(err);
+            }
+            order.name = req.body.name;            
+            order.datetime = req.body.datetime;
+            order.status = req.body.status;
+            order.country = req.body.country;
+            order.phone = req.body.phone;
+            order.email = req.body.email;
+            order.total = req.body.total;
+            order.taxes = req.body.taxes;
+            order.cityAddress = req.body.cityAddress;
+            order.companyName = req.body.companyName;
+            order.firstName = req.body.firstName;
+            order.lastName = req.body.lastName;
+            order.postalCode = req.body.postalCode;
+            order.streetAddress = req.body.streetAddress;
+
+            order.save((err, order) => {
+                if (err) {
+                    res.status(404)
+                        .json(err);
+                } else {
+                    res.status(200)
+                        .json(order);
+                }
+            });
+        });
+};
+
+const deleteOrder = function(req,res){
+    const { orderid } = req.params;
+    if (orderid) {
+        Order.findByIdAndRemove(orderid)
+            .exec((err, order) => {
+                if (err) {
+                    return res
+                        .status(404)
+                        .json(err);
+                }
+                //If order to delete is not found show a custom message
+                if(!order){
+                    return res.status(404)
+                              .json({
+                                  "message": "Order to delete not found"
+                              });
+                }
+                res.status(204)
+                    .json(null);
+            }
+            );
+    } else {
+        res.status(404)
+            .json({
+                "message": "No Order found"
+            });
+    }
 };
 
 module.exports = {
@@ -708,26 +840,37 @@ module.exports = {
     createUser,
     updateUser,
     deleteUser,
+    
     //Event
     getSingleEvent,
     createEvent,
     deleteEvent,
     updateEvent,
+    
     //ShoppingList
     getSingleShoppingList,
     createShoppingList,
     deleteShoppingList,
     updateShoppingList,
+    
     //Product
     getProduct,
     getSingleProduct,
     createProduct,
     updateProduct,
     deleteProduct,
+    
     //Product Category
-    getProductCat,
+    /*getProductCat,
     getSingleProductCat,
     createProductCat,
     updateProductCat,
-    deleteProductCat
+    deleteProductCat*/
+    
+    //Order
+    getOrder,
+    getSingleOrder,
+    createOrder,
+    updateOrder,
+    deleteOrder 
 }

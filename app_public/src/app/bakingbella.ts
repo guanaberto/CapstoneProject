@@ -13,10 +13,11 @@ export class ShoppingList{
     quantity : number;
     totalprice : number;
     product_id : string;
+    order_id : string;
 }
 
 export class User{
-    _id : string;
+    _id : string; 
     firstName : string;
     lastName : string;
     password : string;
@@ -27,9 +28,25 @@ export class User{
     shoppinglists : ShoppingList[];
 }
 
-export class ProductCat{
+/*export class ProductCat{
     _id : string;
     name : string;
+}*/
+export class Order{
+    _id : string; 
+    datetime : Date;
+    status : string;
+    country : string;
+    phone : string;
+    email : string;
+    total : number;
+    taxes : number;
+    cityAddress : string;
+    companyName : string;
+    firstName : string;
+    lastName : string;
+    postalCode : string;
+    streetAddress : string;
 }
 
 export class Product {
@@ -49,5 +66,17 @@ export class EventUser {
     constructor (ev:Event, us: User){
         this.event = ev;
         this.user = us;
+    }
+}
+
+//Wrapper cart
+export class CartProduct{
+    prod : Product;
+    quantitySel : number;
+    totalPrice : number;
+    constructor (p:Product, q: number, tp : number){
+        this.prod = p;
+        this.quantitySel = q;
+        this.totalPrice = tp;
     }
 }

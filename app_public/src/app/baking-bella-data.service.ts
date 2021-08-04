@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
-import { Product, ProductCat, User, Event, ShoppingList, EventUser} from './bakingbella';
+import { Product, /*ProductCat*/Order, User, Event, ShoppingList, EventUser} from './bakingbella';
 
 @Injectable({
   providedIn: 'root'
@@ -43,7 +43,7 @@ export class BakingBellaDataService {
   }
 
   //Product Categories
-  public getProductCats() : Promise<ProductCat[]>{
+  /*public getProductCats() : Promise<ProductCat[]>{
     const url: string = `${this.apiBaseUrl}/productcats/`;
     return this.http.get(url).toPromise().then(response => response as ProductCat[]).catch(this.handleError);
   }
@@ -65,8 +65,33 @@ export class BakingBellaDataService {
   public deleteProductCat(id) : Promise<void> {
     const url: string = `${this.apiBaseUrl}/productcats/${id}`;
     return this.http.delete(url).toPromise().then().catch(this.handleError);
+  }*/
+  
+  //Orders
+  public getOrders() : Promise<Order[]>{
+    const url: string = `${this.apiBaseUrl}/orders/`;
+    return this.http.get(url).toPromise().then(response => response as Order[]).catch(this.handleError);
+  }
+  public getSingleOrder(idOrder) : Promise<Order>{
+    const url: string = `${this.apiBaseUrl}/orders/${idOrder}`;
+    return this.http.get(url).toPromise().then(response => response as Order).catch(this.handleError);
+  }
+
+  public updateOrder(editOrder: Order) : Promise<Order>{
+    const url: string = `${this.apiBaseUrl}/orders/${editOrder._id}`;
+    return this.http.put(url,editOrder).toPromise().then(response => response as Order).catch(this.handleError);
   }
   
+  public createOrder(newOrder: Order): Promise<void | Order>{
+    const url: string = `${this.apiBaseUrl}/orders/`;
+    return this.http.post(url, newOrder).toPromise().then(response => response as Order).catch(this.handleError);
+  }
+
+  public deleteOrder(id) : Promise<void> {
+    const url: string = `${this.apiBaseUrl}/orders/${id}`;
+    return this.http.delete(url).toPromise().then().catch(this.handleError);
+  }
+
   //User
   public getUsers() : Promise<User[]>{
     const url: string = `${this.apiBaseUrl}/users/`;

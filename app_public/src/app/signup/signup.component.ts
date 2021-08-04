@@ -29,7 +29,8 @@ export class SignupComponent implements OnInit {
     _id: '',
     quantity : 0,
     totalprice: 0,
-    product_id: ''
+    product_id: '',
+    order_id : ''
   }
   newus : User= {
     _id : '',

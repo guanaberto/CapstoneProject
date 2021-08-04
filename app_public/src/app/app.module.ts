@@ -20,6 +20,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatTableModule} from '@angular/material/table';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatDialogModule} from '@angular/material/dialog';
+import {CdkTableModule} from '@angular/cdk/table';
+import {MatStepperModule} from '@angular/material/stepper';
 
 
 import { IvyCarouselModule } from 'angular-responsive-carousel';
@@ -40,6 +42,7 @@ import { EventlistComponent } from './eventlist/eventlist.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { EventlistmanagerComponent } from './eventlistmanager/eventlistmanager.component';
 import { MatSortModule } from '@angular/material/sort';
+import { CartComponent } from './cart/cart.component';
 
 
 
@@ -63,7 +66,8 @@ const routerOptions: ExtraOptions = {
     EventcreateComponent,
     EventlistComponent,
     EventlistmanagerComponent,
-    ShoppinglistDialog
+    ShoppinglistDialog,
+    CartComponent
   ],
   imports: [
     BrowserModule,
@@ -86,6 +90,8 @@ const routerOptions: ExtraOptions = {
     MatSortModule,
     MatBadgeModule,
     MatDialogModule,
+    CdkTableModule,
+    MatStepperModule,
     IvyCarouselModule,
     HttpClientModule,
     FormsModule,
@@ -143,6 +149,10 @@ const routerOptions: ExtraOptions = {
       {
         path: 'eventlistmanager',
         component: EventlistmanagerComponent
+      },
+      {
+        path: 'cart',
+        component: CartComponent
       }
     ], routerOptions),
     BrowserAnimationsModule
