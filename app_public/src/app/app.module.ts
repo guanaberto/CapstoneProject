@@ -43,6 +43,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { EventlistmanagerComponent } from './eventlistmanager/eventlistmanager.component';
 import { MatSortModule } from '@angular/material/sort';
 import { CartComponent } from './cart/cart.component';
+import { OrdermanagerComponent, OrdermanagerDialog } from './ordermanager/ordermanager.component';
 
 
 
@@ -67,7 +68,9 @@ const routerOptions: ExtraOptions = {
     EventlistComponent,
     EventlistmanagerComponent,
     ShoppinglistDialog,
-    CartComponent
+    OrdermanagerDialog,
+    CartComponent,
+    OrdermanagerComponent
   ],
   imports: [
     BrowserModule,
@@ -153,6 +156,10 @@ const routerOptions: ExtraOptions = {
       {
         path: 'cart',
         component: CartComponent
+      },
+      {
+        path: 'ordermanager',
+        component: OrdermanagerComponent
       }
     ], routerOptions),
     BrowserAnimationsModule

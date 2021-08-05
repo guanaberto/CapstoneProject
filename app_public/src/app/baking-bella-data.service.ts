@@ -82,8 +82,9 @@ export class BakingBellaDataService {
     return this.http.put(url,editOrder).toPromise().then(response => response as Order).catch(this.handleError);
   }
   
-  public createOrder(newOrder: Order): Promise<void | Order>{
+  public createOrder(newOrder: Order): Promise<Order>{
     const url: string = `${this.apiBaseUrl}/orders/`;
+    console.log(newOrder);
     return this.http.post(url, newOrder).toPromise().then(response => response as Order).catch(this.handleError);
   }
 

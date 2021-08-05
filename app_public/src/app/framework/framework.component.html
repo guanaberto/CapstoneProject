@@ -42,9 +42,9 @@
       <mat-toolbar color="accent" *ngIf="isLoggedIn && !isAdmin">
         <mat-toolbar-row>
           <ul class="ulnavbar">
-            <li><a mat-button [routerLink]="'/shoppinglist'">Products</a></li>
-            <li><a mat-button [routerLink]="'/eventlist'">Events</a></li>
-            <li><a mat-button [routerLink]="'/orders'">Orders</a></li>
+            <li><a mat-button [routerLink]="'/shoppinglist'">My Products</a></li>
+            <li><a mat-button [routerLink]="'/eventlist'">My Events</a></li>
+            <li><a mat-button disabled [routerLink]="'/orders'">My Orders</a></li>
           </ul>          
         </mat-toolbar-row>
       </mat-toolbar>
@@ -52,9 +52,9 @@
       <mat-toolbar color="accent" *ngIf="isLoggedIn && isAdmin">
         <mat-toolbar-row>
           <ul class="ulnavbar">            
-            <li><a mat-button [routerLink]="'/productlist'">Products</a></li>
-            <li><a mat-button [routerLink]="'/eventlistmanager'">Events</a></li>
-            <li><a mat-button [routerLink]="'/'">Orders</a></li>
+            <li><a mat-button [routerLink]="'/productlist'">Manage Products</a></li>
+            <li><a mat-button [routerLink]="'/eventlistmanager'">Manage Events</a></li>
+            <li><a mat-button [routerLink]="'/ordermanager'">Manage Orders</a></li>
           </ul>          
         </mat-toolbar-row>
       </mat-toolbar>

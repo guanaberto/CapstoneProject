@@ -280,6 +280,10 @@ snack-bar-container.notification {
     background-color: #7c7197 !important;
 }
 
+.coupontext{
+    background-color: #3c0f4f !important;
+}
+
 mat-sidenav{
   height: 100%;
   overflow-y: hidden; 
@@ -323,21 +327,17 @@ mat-sidenav{
     top: 20px;
 }
 
-.list-mat-card .checkoutBtn{
-    position: absolute;
-    right: 20px;
-    bottom: 20px;
-}
-
-.carttable{
-    margin-bottom: 60px;
-}
-
 .emptymsg{
     text-align: center;
 }
 .emptymsg a{
     color: #faa327;
+}
+
+.finishedmessage{
+    text-align: center;
+    font-size: 5vh;
+    margin: 50px;
 }
 
 
@@ -372,10 +372,27 @@ mat-sidenav{
     object-fit: cover;
 }
 
+.mat-dialog-container{
+    background-color: #292e33 !important;
+}
+
+mat-stepper{
+    background-color: #292e33 !important;
+}
+
 mat-card img{
     object-fit: cover;
 }
 
+.fieldmed{
+    margin: 5px;
+    width: 45%;
+}
+
+.fieldtotal{
+    margin: 5px;
+    width: 90.8%;
+}
 /* Responsive layout - makes a one column-layout instead of a two-column layout */
 @media (max-width: 960px) {
     .prod1, .prod2, .prod3 {

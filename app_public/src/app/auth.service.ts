@@ -67,20 +67,4 @@ export class AuthService {
     this.router.navigate(['/login']);
     
   } 
-
-  //To set and get the cart products on the Localstorage
-  /*checkShoppingCart(){
-    if(!this.theProducts){
-      //this.theProducts = 
-    }
-  }
-
-  set theProducts(value:Product[]) {
-    this.shoppingProducts.next(value); // this will make sure to tell every subscriber about the change.
-    localStorage.setItem('cartproducts', JSON.stringify(value));
-  }
- 
-  get theProducts() {
-    return JSON.parse(localStorage.getItem('cartproducts'));
-  }*/
 }

@@ -280,6 +280,10 @@ snack-bar-container.notification {
     background-color: #7c7197 !important;
 }
 
+.coupontext{
+    background-color: #3c0f4f !important;
+}
+
 mat-sidenav{
   height: 100%;
   overflow-y: hidden; 
@@ -306,7 +310,7 @@ mat-sidenav{
 .list-mat-card {
     max-width: 70%;
     margin: 2em auto;
-    background-color: #292e33;
+    background-color: #292e33 !important;
 }
 
 .list-mat-card h2{
@@ -322,6 +326,20 @@ mat-sidenav{
     right: 20px;
     top: 20px;
 }
+
+.emptymsg{
+    text-align: center;
+}
+.emptymsg a{
+    color: #faa327;
+}
+
+.finishedmessage{
+    text-align: center;
+    font-size: 5vh;
+    margin: 50px;
+}
+
 
 /*Date icon to white*/
 ::-webkit-calendar-picker-indicator {
@@ -354,10 +372,27 @@ mat-sidenav{
     object-fit: cover;
 }
 
+.mat-dialog-container{
+    background-color: #292e33 !important;
+}
+
+mat-stepper{
+    background-color: #292e33 !important;
+}
+
 mat-card img{
     object-fit: cover;
 }
 
+.fieldmed{
+    margin: 5px;
+    width: 45%;
+}
+
+.fieldtotal{
+    margin: 5px;
+    width: 90.8%;
+}
 /* Responsive layout - makes a one column-layout instead of a two-column layout */
 @media (max-width: 960px) {
     .prod1, .prod2, .prod3 {

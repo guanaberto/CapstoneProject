@@ -45,6 +45,8 @@ export class CartService {
 
   clearCart() {
     this.items = [];
+    this.cartMap = new Map<string, CartProduct>();
+    this.verifyCart();
     return this.items;
   }
 }

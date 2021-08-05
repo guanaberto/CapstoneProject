@@ -22,6 +22,7 @@ const sendEmail = function(req,res){
         html: body
     };
 
+    console.log(body);
     transporter.sendMail(mailOptions, function(error, info){
     if (error) {
         console.log(error);

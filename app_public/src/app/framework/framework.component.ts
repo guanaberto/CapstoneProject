@@ -44,5 +44,6 @@ export class FrameworkComponent implements OnInit {
       return;
     
     this.authService.logout(); 
+    this.cart.clearCart();
   }
 }

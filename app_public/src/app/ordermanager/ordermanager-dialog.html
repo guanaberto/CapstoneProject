@@ -1,0 +1,44 @@
+<h1 mat-dialog-title>Order Detail</h1>
+<div mat-dialog-content>
+    <mat-list>
+        <mat-divider></mat-divider>
+        <mat-list-item><b>Name:&nbsp;</b>{{data.order.firstName}} {{data.order.lastName}}</mat-list-item>        
+        <mat-list-item><b>Company Name:&nbsp;</b>{{data.order.companyName}}</mat-list-item>        
+        <mat-list-item><b>Country:&nbsp;</b>{{data.order.country}}</mat-list-item>
+        <mat-list-item><b>Street:&nbsp;</b>{{data.order.streetAddress}}</mat-list-item>
+        <mat-list-item><b>City:&nbsp;</b>{{data.order.cityAddress}}</mat-list-item>
+        <mat-list-item><b>Province:&nbsp;</b>{{data.order.provinceAddress}}</mat-list-item>
+        <mat-list-item><b>Postal Code:&nbsp;</b>{{data.order.postalCode}}</mat-list-item>
+        <mat-list-item><b>Phone:&nbsp;</b>{{data.order.phone}}</mat-list-item>
+        <mat-list-item><b>Email:&nbsp;</b>{{data.order.email}}</mat-list-item>
+        <mat-list-item><b>Taxes:&nbsp;</b>{{data.order.taxes | currency}}</mat-list-item>
+        <mat-list-item><b>Total:&nbsp;</b>{{data.order.total | currency}}</mat-list-item>
+        <mat-divider></mat-divider>
+    </mat-list>
+    <br>
+    <h2>Products</h2>
+    <table mat-table [dataSource]="dataProd" class="mat-elevation-z8">
+        <ng-container matColumnDef="picture">
+            <th mat-header-cell *matHeaderCellDef> Picture </th>
+            <td mat-cell *matCellDef="let element"> <img class="tablepic" src="{{element.prod.picture}}"/> </td>               
+        </ng-container>
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.prod.name}} </td>
+        </ng-container>  
+        <ng-container matColumnDef="quantity">
+            <th mat-header-cell *matHeaderCellDef> Quantity </th>
+            <td mat-cell *matCellDef="let element"> {{element.quantitySel}} </td>
+        </ng-container> 
+        <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef> Unit Price </th>
+            <td mat-cell *matCellDef="let element"> {{element.prod.basePrice | currency}} </td>
+        </ng-container>  
+        <ng-container matColumnDef="total">
+            <th mat-header-cell *matHeaderCellDef> Total </th>
+            <td mat-cell *matCellDef="let element"> {{element.totalPrice | currency}} </td>
+        </ng-container>                 
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

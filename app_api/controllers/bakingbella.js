@@ -748,6 +748,7 @@ const createOrder = function(req,res){
         if(err){
             res.status(404).json(err);
             console.log("data received: "+odata);
+            console.log("Error reason:"+err);
             return;
         }else{
             res.status(200).json(odata);
