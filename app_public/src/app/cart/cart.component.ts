@@ -27,32 +27,15 @@ export class CartComponent implements OnInit {
 
   @ViewChild("stepper", { static: false }) stepper: MatStepper;
 
-  orderObject : Order = new Order();/*{
-    _id : "",
-    datetime : new Date(),
-    status : "Created",
-    country : "",
-    phone : "",
-    email : "",
-    user_id : "",
-    total : 0,
-    taxes : 0,
-    cityAddress : "",
-    companyName : "",
-    firstName : "",
-    lastName : "",
-    postalCode : "",
-    streetAddress : "",
-    provinceAddress : "",
-    shoppinglists : []
-  };*/
-  
+  orderObject : Order = new Order();  
 
   constructor(private ns:NotificationService, private authService : AuthService, private bakingBellaService : BakingBellaDataService, private cart : CartService, private fb: FormBuilder) { 
     
   }
 
   async ngOnInit() {
+    //redirects if the user is not logged in
+    this.authService.verifyLoginRedirectMain();
     //get user information
     var usId = this.authService.getToken();
     await this.bakingBellaService.getSingleUserById(usId).then(u=>this.loggedUser=u);

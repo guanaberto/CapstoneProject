@@ -3,7 +3,8 @@
     <mat-toolbar-row>
       <!--Menu button, only visible in small screens-->
       <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
-        <mat-icon>menu</mat-icon>
+        <mat-icon *ngIf="cartProducts.length" [matBadge]="cartProducts.length" matBadgeColor="warn">menu</mat-icon>
+        <mat-icon *ngIf="!cartProducts.length">menu</mat-icon>
       </button>
       <div class="mainbutton">
         <button  [routerLink]="'/'" mat-icon-button>
@@ -33,6 +34,7 @@
         <a mat-list-item (click)="sidenav.toggle(); scroll('products');">Our Products</a>
         <a mat-list-item (click)="sidenav.toggle(); scroll('contactus');">Contact Us</a>
         <a mat-list-item (click)="sidenav.toggle();" [routerLink]="'/login'"><mat-icon>person</mat-icon></a>
+        <a mat-list-item [routerLink]="'/cart'" *ngIf="cartProducts.length"><mat-icon [matBadge]="cartProducts.length" matBadgeColor="warn">shopping_cart</mat-icon></a>
         <a mat-list-item *ngIf="isLoggedIn" (click)="sidenav.toggle(); logout();"><mat-icon>power_settings_new</mat-icon></a>
       </mat-nav-list>
     </mat-sidenav>

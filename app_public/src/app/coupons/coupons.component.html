@@ -2,9 +2,9 @@
     <div class="container logo">
         <img src="../../assets/pics/logo.png">
     </div>
-    <img src="../../assets/pics/chocolatecake.jpg" alt="Avatar" style="width:100%;">
+    <img class="image" src="../../assets/pics/chocolatecake.jpg" alt="Avatar">
     <div class="container coupontext">
-        <h2><b>{{couponDiscount*100}}% OFF IN YOUR FIRST PURCHASE</b></h2>        
+        <h2><b>{{couponDiscount*100}}% OFF IN YOUR PURCHASE</b></h2>        
         <p>Use Promo Code: <b>{{coupon}}</b></p>
         <p class="expire">Expires: {{couponDueDate | date:'short'}}</p>
     </div>

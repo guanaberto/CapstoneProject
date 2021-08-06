@@ -249,9 +249,9 @@ ul{
     margin-top: 5px !important;
     font-size: 19px !important;    
     
-    overflow: hidden;
     text-overflow: ellipsis;
-    word-wrap: break-word;    
+    white-space: nowrap;
+    overflow: hidden;  
 }
 .outofstock{
     color: red;
@@ -283,6 +283,39 @@ snack-bar-container.notification {
 .coupontext{
     background-color: #3c0f4f !important;
 }
+
+.coupon {
+    border: 5px dotted rgb(154, 154, 154); /* Dotted border */
+    width: 80%;
+    border-radius: 15px; /* Rounded border */
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    max-width: 600px;
+    padding: 5px;
+  }
+  
+  .coupon .container {
+    padding: 2px 16px;
+    background-color: #f1f1f1;
+    text-align: center;
+  }
+  
+  .coupon .expire {
+    color: red;
+  }
+  
+  .coupon .logo{
+    background-color: #7b1fa2;
+  }
+  
+  .coupon .image{
+    width:100%;
+  }
+  .coupon .logo > img {
+    width: 15%;
+  }
 
 mat-sidenav{
   height: 100%;
@@ -380,6 +413,10 @@ mat-stepper{
     background-color: #292e33 !important;
 }
 
+.mat-paginator{
+    background-color: #292e33 !important;
+}
+
 mat-card img{
     object-fit: cover;
 }
@@ -436,4 +473,54 @@ mat-card img{
         width: 350px !important;
     }
 
+    .coupon{
+        border: none;
+        width: auto;
+        max-width: none;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding: 30px;
+    }
+
+    .coupon .logo > img {
+        width: 20%;
+    }
+
+    .shoppinglist{
+        max-width: 95%;
+    }
+    .shoppinglist mat-card-content{
+        display: flex;
+    }    
+    .shoppinglist .imgdiv{
+        flex: 20%;
+    }   
+    .shoppinglist .flexcontainer{
+        flex: 40%;
+        height: 100%;
+    } 
+    .shoppinglist .buttondiv{
+        flex: 20%;     
+    }
+    .buttondiv button{
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+
+    .shoppinglistprods img{
+        height: 100%;   
+        width: 100%;   
+        margin-top: 0 auto;
+        margin-bottom: 0 auto;    
+    }
+    .shoppinglistprods mat-card{
+        width: 100%;
+    }
+    .shoppinglist mat-card-title{
+        white-space: normal;        
+    }
 }

@@ -4,8 +4,8 @@ var nodemailer = require('nodemailer');
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'bakingbella7@gmail.com',
-    pass: 'Capstone2021'
+    user: 'bakingbellabakery@gmail.com',
+    pass: 'Unhackable2021@'
   }
 });
 
@@ -16,7 +16,7 @@ const sendEmail = function(req,res){
     const body = req.params.body+req.params[0];
     
     var mailOptions = {
-        from: 'bakingbella7@gmail.com',
+        from: 'bakingbellabakery@gmail.com',
         to: to,
         subject: subject,
         html: body

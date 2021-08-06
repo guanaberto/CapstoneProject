@@ -24,7 +24,7 @@ export class AuthService {
   }
 
   verifyLoginRedirectMain(){
-    if(!this.verifyLogin()){
+    if(!this.isLoggedIn.value){
       this.router.navigate(['/login']);       
       this.ns.error('You are not logged in');
     }

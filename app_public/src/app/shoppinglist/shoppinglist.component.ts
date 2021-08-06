@@ -19,8 +19,6 @@ export class ShoppinglistComponent implements OnInit {
   constructor(public dialog: MatDialog, private authService : AuthService, private bakingBellaService : BakingBellaDataService, private route : ActivatedRoute) { }
 
   async ngOnInit() {
-    this.authService.verifyLoginRedirectMain();
-
     await this.bakingBellaService.getProducts().then(findProducts => this.originalProducts = findProducts);
     
     //Get filter parameters
