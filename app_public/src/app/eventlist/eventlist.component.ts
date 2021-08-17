@@ -20,8 +20,6 @@ export class EventlistComponent implements OnInit {
 
   async ngOnInit() {
     await this.bakingBellaService.getSingleUserById(this.authService.getToken()).then(foundUser => this.dataSource = foundUser.events);   
-    console.log(this.authService.getToken());
-    console.log(this.dataSource);
   }
 
   async create(){

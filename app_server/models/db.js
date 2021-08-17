@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 
-const dbURI = 'mongodb+srv://website:yve7Naq6XNjx6sHq@cluster0.hyzv6.mongodb.net/BakingBella?retryWrites=true&w=majority';
-
+const dbURI = process.env.dbURI;
+  
 mongoose.connect(dbURI, {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
+    useUnifiedTopology: true, 
     dbName: 'BakingBella'
 });
 
@@ -19,12 +20,5 @@ mongoose.connection.on('error', err => {
 mongoose.connection.on('disconnected', () => {
     console.log('Mongoose disconnected');
 });
-
-/*const gracefulShutdown = (msg, callback) => {
-    console.connection.close( () => {
-        console.log(`Mongoose disconnected through ${msg}`);
-        callback();
-    });
-};*/
 
 require('./bakingbella');

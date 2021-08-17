@@ -104,23 +104,29 @@ ul{
 .about{
     background-color:#7c7197 !important;
     width: 100%;
+    margin-top: 70px;
+    margin-bottom: 70px;
     text-align: center;
+    display: flex;
 }
-.about h2 {
-    margin-bottom: 25px !important;
+.about p{
+    width: 330px;
+    text-align: justify;
+    margin: auto !important;
+}
+.about h2{
+    text-align: center;
+    margin-top: 50px !important;
 }
 .about img{
-    height: 325px; 
-    display: inline-block;   
-    padding-top: 7%;
+    width: 330px;
 }
 .about div{
     color: #FFF;
-    display: inline-block;
-    width: 300px;
-    text-align: justify;
+    text-align: center;
     font-size: 18px !important;    
-    padding: 7%;
+    margin: 20px;
+    flex: 25%
 }
 
 .title{
@@ -142,12 +148,10 @@ ul{
 
 .waitingtitle h2{
     position: relative;
-    /*right: 15%;*/
-    bottom: -40%;
-    /*left: 15%;*/
-    z-index: 10;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    z-index: 10;    
     color: #fff;
     opacity: 0.6;
     font-size: 7vw !important;
@@ -192,13 +196,11 @@ ul{
 }
 
 .contactus div h2{
-    font-size: 4vw !important;
-    margin-bottom: 4vw !important;    
+    font-size: 55px !important; 
 }
 
 .contactus div p{
-    font-size: 1.6vw !important;
-    line-height: 1.8vw;
+    font-size: 18px !important;
     color: #000;
 }
 
@@ -367,6 +369,10 @@ mat-sidenav{
     color: #faa327;
 }
 
+.addmore{
+    color: #faa327;
+}
+
 .finishedmessage{
     text-align: center;
     font-size: 5vh;
@@ -430,6 +436,20 @@ mat-card img{
     margin: 5px;
     width: 90.8%;
 }
+
+.buttondiv{
+    display: inline-flex;
+}
+
+.buttondiv .qty{
+    width: 70px;
+    background-color: white;
+    color: black;
+    padding-top: 8px;
+    font-size: 12px;
+    text-align: center;
+}
+
 /* Responsive layout - makes a one column-layout instead of a two-column layout */
 @media (max-width: 960px) {
     .prod1, .prod2, .prod3 {
@@ -473,6 +493,18 @@ mat-card img{
         width: 350px !important;
     }
 
+    .about{
+        display: table;
+    }
+    
+    .about .about_part{
+        width: 100%;
+    }
+
+    .about div{
+        margin: 0px;
+    }
+
     .coupon{
         border: none;
         width: auto;
@@ -493,13 +525,13 @@ mat-card img{
         display: flex;
     }    
     .shoppinglist .imgdiv{
-        flex: 20%;
+        flex: 40%;
     }   
     .shoppinglist .flexcontainer{
-        flex: 40%;
-        height: 100%;
+        flex: 60%;
+        margin: auto !important;
     } 
-    .shoppinglist .buttondiv{
+    /*.shoppinglist .buttondiv{
         flex: 20%;     
     }
     .buttondiv button{
@@ -509,7 +541,7 @@ mat-card img{
         right: 20px;
         -ms-transform: translateY(-50%);
         transform: translateY(-50%);
-    }
+    }*/
 
     .shoppinglistprods img{
         height: 100%;   
@@ -522,5 +554,20 @@ mat-card img{
     }
     .shoppinglist mat-card-title{
         white-space: normal;        
+    }
+    
+    .contactus{
+        display: table;
+        width: 100%;
+    }
+    .contactus div{
+        width: 90%;
+        margin: 30px;
+        text-align: center;        
+    }
+    
+    .contactus iframe{
+        width: 100%;
+        height: 50vw;
     }
 }

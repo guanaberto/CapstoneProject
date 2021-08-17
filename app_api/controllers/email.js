@@ -1,11 +1,12 @@
 const { response } = require('express');
 var nodemailer = require('nodemailer');
+require('dotenv').config();
 
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'bakingbellabakery@gmail.com',
-    pass: 'Unhackable2021@'
+    user: process.env.emailUSER,
+    pass: process.env.emailPASS
   }
 });
 
@@ -16,7 +17,7 @@ const sendEmail = function(req,res){
     const body = req.params.body+req.params[0];
     
     var mailOptions = {
-        from: 'bakingbellabakery@gmail.com',
+        from: process.env.emailUSER,
         to: to,
         subject: subject,
         html: body

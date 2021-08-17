@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { BakingBellaDataService } from '../baking-bella-data.service';
@@ -14,24 +15,26 @@ import { NotificationService } from '../notification.service';
 })
 export class EventlistmanagerComponent implements OnInit {
   displayedColumns: string[] = ['client','name','datetime', 'type', 'status', 'action'];
-  dataSource : EventUser[];
+  dataSource : MatTableDataSource<EventUser>;
+  @ViewChild('paginator') paginator : MatPaginator;
+
     
   constructor(public datepipe: DatePipe, public ns: NotificationService,public bakingBellaService : BakingBellaDataService, public router : Router) {    
   }
 
   async ngOnInit() {
     //this.dataSource = [];
-    await this.bakingBellaService.getEventUsers().then(foundEvents => this.dataSource = foundEvents);        
-    this.dataSource.sort(this.compare);
+    await this.bakingBellaService.getEventUsers().then(e => this.dataSource = new MatTableDataSource(e.sort(this.compare)));        
+    this.dataSource.paginator = this.paginator
   }
 
   //Sorter by status
   compare( a, b ) {
-    if ( a.event.status < b.event.status ){
-      return -1;
-    }
-    if ( a.event.status > b.event.status ){
+    if ( a.event.datetime < b.event.datetime ){
       return 1;
+    }
+    if ( a.event.datetime > b.event.datetime ){
+      return -1;
     }
     return 0;
   }  

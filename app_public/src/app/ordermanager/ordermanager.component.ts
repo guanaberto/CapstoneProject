@@ -1,5 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { BakingBellaDataService } from '../baking-bella-data.service';
 import { CartProduct, Order, Product } from '../bakingbella';
@@ -13,18 +15,19 @@ import { NotificationService } from '../notification.service';
 })
 export class OrdermanagerComponent implements OnInit {
   displayedColumns: string[] = ['name','datetime', 'total', 'status', 'action'];
-  dataSource : Order[];
+  dataSource : MatTableDataSource<Order>;
   mapProducts : Map<string, Product> = new Map<string, Product>();
+  @ViewChild('paginator') paginator : MatPaginator;
 
   constructor(public dialog: MatDialog, public ns: NotificationService,public bakingBellaService : BakingBellaDataService, public router : Router) 
   { }
 
   async ngOnInit() {
-    await this.bakingBellaService.getOrders().then(o => this.dataSource = o);        
-    this.dataSource.sort(this.compare);
+    await this.bakingBellaService.getOrders().then(o => this.dataSource = new MatTableDataSource(o.sort(this.compare)));        
+    this.dataSource.paginator = this.paginator;
 
     //generate map of products
-    this.dataSource.forEach(ds=>{
+    this.dataSource.data.forEach(ds=>{
       ds.shoppinglists.forEach(sl=>{
         //check the values in the db and add it to the map of products
         this.bakingBellaService.getSingleProduct(sl.product_id).then(p=>{
@@ -36,10 +39,10 @@ export class OrdermanagerComponent implements OnInit {
 
   //Sorter by status
   compare( a, b ) {
-    if ( a.status < b.status ){
+    if ( a.datetime < b.datetime ){
       return 1;
     }
-    if ( a.status > b.status ){
+    if ( a.datetime > b.datetime ){
       return -1;
     }
     return 0;

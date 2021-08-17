@@ -72,6 +72,10 @@ export class BakingBellaDataService {
     const url: string = `${this.apiBaseUrl}/orders/`;
     return this.http.get(url).toPromise().then(response => response as Order[]).catch(this.handleError);
   }
+  public getOrdersByUser(idUser: string) : Promise<Order[]>{
+    const url: string = `${this.apiBaseUrl}/ordersuser/${idUser}`;
+    return this.http.get(url).toPromise().then(response => response as Order[]).catch(this.handleError);
+  }
   public getSingleOrder(idOrder) : Promise<Order>{
     const url: string = `${this.apiBaseUrl}/orders/${idOrder}`;
     return this.http.get(url).toPromise().then(response => response as Order).catch(this.handleError);

@@ -6,22 +6,29 @@ import { CartProduct, Product } from './bakingbella';
   providedIn: 'root'
 })
 export class CartService {
-  items: Product[] = [];
-  productBehavior : BehaviorSubject<Product[]>;
+  counterBehavior : BehaviorSubject<number>;
   cartMap : Map<string, CartProduct> = new Map<string, CartProduct>();
 
   constructor() { 
-    this.productBehavior = new BehaviorSubject<Product[]>([]);
+    this.counterBehavior = new BehaviorSubject<number>(0);
   }
 
-  //to get the cart values globally
-  verifyCart() : Observable<Product[]> {
-    this.productBehavior.next(this.items);
-    return this.productBehavior.asObservable();
+  //to get the cart number globally
+  verifyCart() : Observable<number>{
+    return this.counterBehavior.asObservable();
+  }
+
+  verifyProduct(id : string):number{
+    var productInMap = this.cartMap.get(id);
+    if(productInMap){
+      return productInMap.quantitySel;
+    }else{
+      return 0;
+    }
   }
   
   addToCart(product: Product) {
-    this.items.push(product);
+    this.counterBehavior.next(this.counterBehavior.getValue()+1);
     
     var actualValue = this.cartMap.get(product._id) ? this.cartMap.get(product._id) : null;
     
@@ -31,12 +38,22 @@ export class CartService {
     }else{
       this.cartMap.set(product._id, new CartProduct(product, 1, product.basePrice));
     }
-
-    console.log(this.cartMap);
   }
 
-  getItems() {
-    return this.items;
+  removeFromCart(product: Product){
+    this.counterBehavior.next(this.counterBehavior.getValue()-1);
+    
+    var productInMap = this.cartMap.get(product._id);
+    
+    if(productInMap.quantitySel===1){
+      this.cartMap.delete(product._id);
+    }else{
+      productInMap.quantitySel = productInMap.quantitySel-1;
+      productInMap.totalPrice = productInMap.quantitySel*product.basePrice;
+      this.cartMap.set(product._id,productInMap);
+    }
+
+    console.log(this.cartMap);
   }
 
   getCartMap(){
@@ -44,9 +61,9 @@ export class CartService {
   }
 
   clearCart() {
-    this.items = [];
     this.cartMap = new Map<string, CartProduct>();
+    this.counterBehavior.next(0);
     this.verifyCart();
-    return this.items;
+    return this.cartMap;
   }
 }

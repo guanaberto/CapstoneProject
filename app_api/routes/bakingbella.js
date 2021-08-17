@@ -15,6 +15,7 @@ router.route('/productcats/:prodcatid').get(mainCtrl.getSingleProductCat).put(ma
 
 router.route('/orders/').get(mainCtrl.getOrder).post(mainCtrl.createOrder);
 router.route('/orders/:orderid').get(mainCtrl.getSingleOrder).put(mainCtrl.updateOrder).delete(mainCtrl.deleteOrder);
+router.route('/ordersuser/:userid').get(mainCtrl.getOrderByUser);
 
 router.route('/users/:userid/events').post(mainCtrl.createEvent);
 router.route('/users/:userid/events/:eventid').get(mainCtrl.getSingleEvent).delete(mainCtrl.deleteEvent).put(mainCtrl.updateEvent);

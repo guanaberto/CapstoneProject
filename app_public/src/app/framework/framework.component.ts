@@ -13,7 +13,7 @@ import { CartService } from '../cart.service';
 export class FrameworkComponent implements OnInit {
   isLoggedIn = false;
   isAdmin = false;
-  cartProducts = [];
+  itemCounter = 0;
 
   public constructor(private scroller: ViewportScroller, private router: Router, private location : Location, private authService : AuthService, private cart : CartService) { 
     
@@ -22,7 +22,7 @@ export class FrameworkComponent implements OnInit {
   ngOnInit(): void {
     this.authService.verifyLogin().subscribe(v => this.isLoggedIn=v);    
     this.authService.verifyAdmin().subscribe(v => this.isAdmin=v);
-    this.cart.verifyCart().subscribe(v => this.cartProducts=v);
+    this.cart.verifyCart().subscribe(v=> this.itemCounter=v);
   }
 
   public scroll(str : string) : void{

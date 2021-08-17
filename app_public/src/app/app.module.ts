@@ -44,6 +44,7 @@ import { EventlistmanagerComponent } from './eventlistmanager/eventlistmanager.c
 import { MatSortModule } from '@angular/material/sort';
 import { CartComponent } from './cart/cart.component';
 import { OrdermanagerComponent, OrdermanagerDialog } from './ordermanager/ordermanager.component';
+import { OrderlistComponent } from './orderlist/orderlist.component';
 
 
 
@@ -70,7 +71,8 @@ const routerOptions: ExtraOptions = {
     ShoppinglistDialog,
     OrdermanagerDialog,
     CartComponent,
-    OrdermanagerComponent
+    OrdermanagerComponent,
+    OrderlistComponent
   ],
   imports: [
     BrowserModule,
@@ -160,6 +162,10 @@ const routerOptions: ExtraOptions = {
       {
         path: 'ordermanager',
         component: OrdermanagerComponent
+      },
+      {
+        path: 'orderlist',
+        component: OrderlistComponent
       }
     ], routerOptions),
     BrowserAnimationsModule

@@ -8,7 +8,7 @@
                     <ng-container matColumnDef="picture">
                         <th mat-header-cell *matHeaderCellDef> Picture </th>
                         <td mat-cell *matCellDef="let element"> <img class="tablepic" src="{{element.prod.picture}}"/> </td>  
-                        <td mat-footer-cell *matFooterCellDef></td>              
+                        <td mat-footer-cell *matFooterCellDef> <button mat-raised-button [routerLink]="'/shoppinglist'">Add More Products</button></td>              
                     </ng-container>
                     <ng-container matColumnDef="name">
                         <th mat-header-cell *matHeaderCellDef> Name </th>
@@ -17,8 +17,17 @@
                     </ng-container>  
                     <ng-container matColumnDef="quantity">
                         <th mat-header-cell *matHeaderCellDef> Quantity </th>
-                        <td mat-cell *matCellDef="let element"> {{element.quantitySel}} </td>
-                        <td mat-footer-cell *matFooterCellDef></td>
+                        <td mat-cell *matCellDef="let element">
+                          <div class="buttondiv">
+                            <button color="basic" mat-raised-button *ngIf="element.prod.quantity > 0 && verifyProd(element.prod)===0" (click)="addToCart(element.prod)">Add to Cart</button>
+                            <button color="basic" mat-raised-button *ngIf="element.prod.quantity > 0 && verifyProd(element.prod)>0" (click)="removeFromCart(element.prod)">-</button>
+                            <div class="qty" *ngIf="element.prod.quantity > 0 && verifyProd(element.prod)>0" >{{verifyProd(element.prod)}} in Cart</div>
+                            <button color="basic" mat-raised-button *ngIf="element.prod.quantity > 0 && verifyProd(element.prod)>0"  [disabled]="element.prod.quantity === verifyProd(element.prod)" (click)="addToCart(element.prod)">+</button>                       
+                          </div>
+                        </td>
+                        <td mat-footer-cell *matFooterCellDef>
+                          <button mat-raised-button class="addmore" (click)="clearCart()">Clear Cart</button>
+                        </td>
                     </ng-container>      
                     <ng-container matColumnDef="price">
                         <th mat-header-cell *matHeaderCellDef> Price </th>

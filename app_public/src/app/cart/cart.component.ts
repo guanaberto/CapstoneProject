@@ -40,10 +40,7 @@ export class CartComponent implements OnInit {
     var usId = this.authService.getToken();
     await this.bakingBellaService.getSingleUserById(usId).then(u=>this.loggedUser=u);
 
-    var cartmap = this.cart.getCartMap();
-    cartmap.forEach((v,k) => {
-      this.dataSource.push(v);
-    });
+    this.refreshCart();
     
     //Form
     this.secondFormGroup = this.fb.group({
@@ -63,6 +60,36 @@ export class CartComponent implements OnInit {
     this.thirdFormGroup = this.fb.group({
       coupon : ['']
     });
+  }
+
+  clearCart(){
+    if(!confirm('Do you want to delete all the items in the cart??'))
+      return;
+
+    this.cart.clearCart();
+    this.refreshCart();
+  }
+
+  refreshCart(){
+    var cartmap = this.cart.getCartMap();
+    this.dataSource = [];
+    cartmap.forEach((v,k) => {
+      this.dataSource.push(v);
+    });
+  }
+
+  addToCart(p: Product){
+    this.cart.addToCart(p);
+    this.refreshCart();
+  }
+
+  removeFromCart(p:Product){
+    this.cart.removeFromCart(p);
+    this.refreshCart();
+  }
+
+  verifyProd(p:Product):number{
+    return this.cart.verifyProduct(p._id);;
   }
 
   getTotalCost() {

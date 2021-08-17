@@ -3,8 +3,8 @@
     <mat-toolbar-row>
       <!--Menu button, only visible in small screens-->
       <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
-        <mat-icon *ngIf="cartProducts.length" [matBadge]="cartProducts.length" matBadgeColor="warn">menu</mat-icon>
-        <mat-icon *ngIf="!cartProducts.length">menu</mat-icon>
+        <mat-icon *ngIf="itemCounter" [matBadge]="itemCounter" matBadgeColor="warn">menu</mat-icon>
+        <mat-icon *ngIf="!itemCounter">menu</mat-icon>
       </button>
       <div class="mainbutton">
         <button  [routerLink]="'/'" mat-icon-button>
@@ -18,8 +18,7 @@
         <a mat-button (click)="scroll('products')">Our Products</a>
         <a mat-button (click)="scroll('contactus')">Contact Us</a>
         <a mat-button [routerLink]="'/login'"><mat-icon>person</mat-icon></a>
-        <a mat-button [routerLink]="'/cart'" *ngIf="cartProducts.length"><mat-icon [matBadge]="cartProducts.length" matBadgeColor="warn">shopping_cart</mat-icon></a>
-
+        <a mat-button [routerLink]="'/cart'" *ngIf="itemCounter"><mat-icon [matBadge]="itemCounter" matBadgeColor="warn">shopping_cart</mat-icon></a>
         <button *ngIf="isLoggedIn" (click)="logout()" mat-icon-button><mat-icon>power_settings_new</mat-icon></button>
       </div>
     </mat-toolbar-row>
@@ -34,7 +33,7 @@
         <a mat-list-item (click)="sidenav.toggle(); scroll('products');">Our Products</a>
         <a mat-list-item (click)="sidenav.toggle(); scroll('contactus');">Contact Us</a>
         <a mat-list-item (click)="sidenav.toggle();" [routerLink]="'/login'"><mat-icon>person</mat-icon></a>
-        <a mat-list-item [routerLink]="'/cart'" *ngIf="cartProducts.length"><mat-icon [matBadge]="cartProducts.length" matBadgeColor="warn">shopping_cart</mat-icon></a>
+        <a mat-list-item [routerLink]="'/cart'" *ngIf="itemCounter"><mat-icon [matBadge]="itemCounter" matBadgeColor="warn">shopping_cart</mat-icon></a>
         <a mat-list-item *ngIf="isLoggedIn" (click)="sidenav.toggle(); logout();"><mat-icon>power_settings_new</mat-icon></a>
       </mat-nav-list>
     </mat-sidenav>
@@ -46,7 +45,7 @@
           <ul class="ulnavbar">
             <li><a mat-button [routerLink]="'/shoppinglist'">My Products</a></li>
             <li><a mat-button [routerLink]="'/eventlist'">My Events</a></li>
-            <li><a mat-button disabled [routerLink]="'/orders'">My Orders</a></li>
+            <li><a mat-button [routerLink]="'/orderlist'">My Orders</a></li>
           </ul>          
         </mat-toolbar-row>
       </mat-toolbar>

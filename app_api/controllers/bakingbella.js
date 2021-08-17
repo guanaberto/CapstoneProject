@@ -711,6 +711,18 @@ const getOrder = function(req,res){
     });        
 };
 
+
+const getOrderByUser = function(req,res){
+    const userid = req.params.userid;
+    Order.find({ user_id: userid }).exec(function(err, odata) {
+        if(err){
+            res.status(404).json(err);
+            return;
+        }
+        res.status(200).json(odata);
+    });        
+};
+
 const getSingleOrder = function(req,res){
     const orderid = req.params.orderid;
     Order.findById(orderid)
@@ -872,6 +884,7 @@ module.exports = {
     
     //Order
     getOrder,
+    getOrderByUser,
     getSingleOrder,
     createOrder,
     updateOrder,

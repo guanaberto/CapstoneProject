@@ -16,7 +16,7 @@ export class ShoppinglistComponent implements OnInit {
   products : Product[];
   originalProducts : Product[];
 
-  constructor(public dialog: MatDialog, private authService : AuthService, private bakingBellaService : BakingBellaDataService, private route : ActivatedRoute) { }
+  constructor(public dialog: MatDialog,private cart : CartService, private authService : AuthService, private bakingBellaService : BakingBellaDataService, private route : ActivatedRoute) { }
 
   async ngOnInit() {
     await this.bakingBellaService.getProducts().then(findProducts => this.originalProducts = findProducts);
@@ -38,6 +38,19 @@ export class ShoppinglistComponent implements OnInit {
       data: p
     });
   }
+
+  addToCart(p: Product){
+    this.cart.addToCart(p);
+  }
+
+  removeFromCart(p:Product){
+    //TODO: Check FIRST
+    this.cart.removeFromCart(p);
+  }
+
+  verifyProd(p:Product):number{
+    return this.cart.verifyProduct(p._id);;
+  }
 }
 
 //Dialogbox class
@@ -46,16 +59,16 @@ export class ShoppinglistComponent implements OnInit {
   templateUrl: 'shoppinglist-dialog.html',
 })
 export class ShoppinglistDialog {
-  form: FormGroup;
+  //form: FormGroup;
   
   constructor(@Inject(MAT_DIALOG_DATA) public data: Product, private fb : FormBuilder, public dialogRef: MatDialogRef<ShoppinglistDialog>, private cart : CartService) {
     
-    this.form = this.fb.group({
+    /*this.form = this.fb.group({
       quantity: [1, Validators.required]
-    });
+    });*/
   }  
 
-  addtocart(){
+  /*addtocart(){
     if (this.form.valid) {
       const quantity = this.form.get('quantity')?.value;
       
@@ -65,5 +78,5 @@ export class ShoppinglistDialog {
 
       this.dialogRef.close();
     }
-  }
+  }*/
 }
