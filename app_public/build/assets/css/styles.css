@@ -182,6 +182,11 @@ ul{
     margin-bottom: 50px !important;
 }
 
+.productgroup p {
+    white-space: break-spaces;
+    line-height: 20px;
+}
+
 .contactus{
     background-color: #FFF;
     display: flex;
